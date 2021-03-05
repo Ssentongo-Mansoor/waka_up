@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 //import 'package:flutter/services.dart';
 import 'package:waka/LoginPage.dart';
-import 'package:waka/building_managers_dashboard.dart';
+//import 'package:waka/building_managers_dashboard.dart';
+//import 'package:waka/add_tenant.dart';
 
 void main() {
   runApp(MaterialApp(

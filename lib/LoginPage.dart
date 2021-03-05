@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+//import 'package:waka/add_tenant.dart';
 import 'package:waka/building_managers_dashboard.dart';
 
-class LoginRoute extends StatelessWidget {
+class LoginRoute extends StatefulWidget {
+  @override
+  _LoginRouteState createState() => _LoginRouteState();
+}
+
+class _LoginRouteState extends State<LoginRoute> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
