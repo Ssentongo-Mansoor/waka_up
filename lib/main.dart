@@ -11,12 +11,12 @@ void main() {
       primarySwatch: Colors.red,
       visualDensity: VisualDensity.adaptivePlatformDensity,
     ),
-    home: FirstRoute(),
+    home: HomePage(),
     debugShowCheckedModeBanner: false,
   ));
 }
 
-class FirstRoute extends StatelessWidget {
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

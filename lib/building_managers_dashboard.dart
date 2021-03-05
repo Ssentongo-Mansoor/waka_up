@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:waka/add_tenant.dart';
+import 'package:waka/main.dart';
 
 class BuildingManagerDashboard extends StatefulWidget {
   @override
@@ -11,7 +13,7 @@ class _BuildingManagerDashboardState extends State<BuildingManagerDashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text("Building Manager's Dashboard")),
+        title: Center(child: Text(" Dashboard")),
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -24,6 +26,70 @@ class _BuildingManagerDashboardState extends State<BuildingManagerDashboard> {
           BottomNavigationBarItem(
               icon: new Icon(Icons.person), label: 'Account')
         ],
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            Center(
+              child: DrawerHeader(
+                child: new Icon(Icons.people),
+                decoration: BoxDecoration(color: Colors.amberAccent[50]),
+              ),
+            ),
+            ListTile(
+              title: Text("Home"),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+                title: Text("Manage Tenants"),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AddTenant()),
+                  );
+                }),
+            ListTile(
+              title: Text("Unit Subscriptions"),
+              onTap: () {},
+            ),
+            ListTile(
+              title: Text("Manage Payments"),
+              onTap: () {},
+            ),
+            ListTile(
+              title: Text("Manage "),
+              onTap: () {},
+            ),
+            ListTile(
+              title: Text("Expense records"),
+              onTap: () {},
+            ),
+            ListTile(
+              title: Text("Electricity Usage"),
+              onTap: () {},
+            ),
+            ListTile(
+              title: Text("Water Usage"),
+              onTap: () {},
+            ),
+            ListTile(
+              title: Text("Balances"),
+              onTap: () {},
+            ),
+            ListTile(
+              title: Text("Log Out"),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomePage()),
+                );
+              },
+            ),
+          ],
+        ),
       ),
       body: ListView(
         children: <Widget>[
