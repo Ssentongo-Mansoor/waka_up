@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:waka/add_tenant.dart';
 import 'package:waka/main.dart';
+import 'package:waka/manage_tenants.dart';
+import 'package:waka/manage_units.dart';
+import 'package:waka/manage_payments.dart';
+//import 'package:waka/add_unit.dart';
+//import 'package:waka/add_tenant.dart';
+//import 'package:waka/add_payment.dart';
 
 class BuildingManagerDashboard extends StatefulWidget {
   @override
@@ -48,20 +53,26 @@ class _BuildingManagerDashboardState extends State<BuildingManagerDashboard> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => AddTenant()),
+                    MaterialPageRoute(builder: (context) => ManageTenants()),
                   );
                 }),
             ListTile(
               title: Text("Unit Subscriptions"),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ManageUnits()),
+                );
+              },
             ),
             ListTile(
               title: Text("Manage Payments"),
-              onTap: () {},
-            ),
-            ListTile(
-              title: Text("Manage "),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ManagePayments()),
+                );
+              },
             ),
             ListTile(
               title: Text("Expense records"),
