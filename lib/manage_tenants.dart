@@ -45,7 +45,7 @@ class _ManageTenantsState extends State<ManageTenants> {
           Container(
             width: 340,
             height: 300,
-            color: Colors.grey,
+            color: Colors.white,
           ),
         ]));
   }

@@ -269,17 +269,7 @@ class _AddTenantState extends State<AddTenant> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20.0),
                 ),
-                child:
-                    /*ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => ManageTenants()),
-                    );
-                  },
-                  child: Text('Add'),
-                ),*/
-                    FlatButton(
+                child: FlatButton(
                   color: Colors.red,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(18.0),
