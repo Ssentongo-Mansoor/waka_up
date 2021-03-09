@@ -46,6 +46,7 @@ class _ManageTenantsState extends State<ManageTenants> {
             width: 340,
             height: 300,
             color: Colors.white,
+            child: Center(child: Text("No Entries Yet")),
           ),
         ]));
   }

@@ -51,6 +51,7 @@ class _ManageUnitsState extends State<ManageUnits> {
               width: 340,
               height: 300,
               color: Colors.white60,
+              child: Center(child: Text("No Entries Yet")),
             ),
           ]),
         ));
