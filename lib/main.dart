@@ -4,11 +4,12 @@ import 'package:waka/LoginPage.dart';
 //import 'package:waka/building_managers_dashboard.dart';
 //import 'package:waka/add_tenant.dart';
 
+//Color clr = const Color(0xF51C50);
 void main() {
   runApp(MaterialApp(
     title: 'Waka',
     theme: ThemeData(
-      primarySwatch: Colors.red,
+      primarySwatch: Colors.red, // color code #F51C50
       visualDensity: VisualDensity.adaptivePlatformDensity,
     ),
     home: HomePage(),
