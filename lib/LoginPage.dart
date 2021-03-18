@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 //import 'package:waka/add_tenant.dart';
-import 'package:waka/building_managers_dashboard.dart';
+import 'package:waka/landlord_dashboard.dart';
 
 class LoginRoute extends StatefulWidget {
   @override
@@ -16,17 +16,19 @@ class _LoginRouteState extends State<LoginRoute> {
       ),
       body: Center(
         child: Container(
-          padding: EdgeInsets.all(16.0),
-          width: 350.0,
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.all(Radius.circular(20.0))),
+          padding: EdgeInsets.all(15.0),
+          width: 360.0,
           height: 420.0,
-          color: Colors.white,
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
                   "Sign in",
-                  style: TextStyle(color: Colors.red, fontSize: 25),
+                  style: TextStyle(color: Colors.purple[900], fontSize: 25),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -49,7 +51,7 @@ class _LoginRouteState extends State<LoginRoute> {
                     Text("Password"),
                     Text(
                       "Forgot Password?",
-                      style: TextStyle(color: Colors.red),
+                      style: TextStyle(color: Colors.purple[900]),
                     )
                   ],
                 ),
@@ -68,7 +70,7 @@ class _LoginRouteState extends State<LoginRoute> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => BuildingManagerDashboard()),
+                            builder: (context) => LandLordDashboard()),
                       );
                     },
                     child: Text('Login'),

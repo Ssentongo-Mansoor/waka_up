@@ -1,24 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:waka/main.dart';
-import 'package:waka/manage_tenants.dart';
-import 'package:waka/manage_units.dart';
-import 'package:waka/manage_payments.dart';
-//import 'package:waka/add_unit.dart';
-//import 'package:waka/add_tenant.dart';
-//import 'package:waka/add_payment.dart';
+import 'package:waka/view_tenants.dart';
+import 'package:waka/view_units.dart';
+import 'package:waka/view_payments.dart';
+import 'package:waka/account.dart';
 
-class BuildingManagerDashboard extends StatefulWidget {
+class LandLordDashboard extends StatefulWidget {
   @override
-  _BuildingManagerDashboardState createState() =>
-      _BuildingManagerDashboardState();
+  _LandLordDashboardState createState() => _LandLordDashboardState();
 }
 
-class _BuildingManagerDashboardState extends State<BuildingManagerDashboard> {
+class _LandLordDashboardState extends State<LandLordDashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text(" Dashboard")),
+        title: Center(child: Text("Dashboard")),
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -29,7 +26,14 @@ class _BuildingManagerDashboardState extends State<BuildingManagerDashboard> {
           BottomNavigationBarItem(
               icon: new Icon(Icons.settings), label: 'Settings'),
           BottomNavigationBarItem(
-              icon: new Icon(Icons.person), label: 'Account')
+              icon: new IconButton(
+                icon: Icon(Icons.person),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Account()));
+                },
+              ),
+              label: 'Account')
         ],
       ),
       drawer: Drawer(
@@ -38,59 +42,67 @@ class _BuildingManagerDashboardState extends State<BuildingManagerDashboard> {
           children: <Widget>[
             Center(
               child: DrawerHeader(
-                child: new Icon(Icons.people),
+                child: new Icon(Icons.account_circle_rounded),
                 decoration: BoxDecoration(color: Colors.amberAccent[50]),
               ),
             ),
             ListTile(
+              leading: Icon(Icons.home),
               title: Text("Home"),
               onTap: () {
                 Navigator.pop(context);
               },
             ),
             ListTile(
-                title: Text("Manage Tenants"),
+                leading: Icon(Icons.person),
+                title: Text("View Tenants"),
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => ManageTenants()),
+                    MaterialPageRoute(builder: (context) => ViewTenants()),
                   );
                 }),
             ListTile(
+              leading: Icon(Icons.location_city),
               title: Text("Unit Subscriptions"),
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ManageUnits()),
+                  MaterialPageRoute(builder: (context) => ViewUnits()),
                 );
               },
             ),
             ListTile(
-              title: Text("Manage Payments"),
+              leading: Icon(Icons.money),
+              title: Text("View Payments"),
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ManagePayments()),
+                  MaterialPageRoute(builder: (context) => ViewPayments()),
                 );
               },
             ),
             ListTile(
-              title: Text("Expense records"),
-              onTap: () {},
-            ),
+                leading: Icon(Icons.book),
+                title: Text("Expense records"),
+                onTap: () {}),
             ListTile(
+              leading: Icon(Icons.power),
               title: Text("Electricity Usage"),
               onTap: () {},
             ),
             ListTile(
+              leading: Icon(Icons.waves),
               title: Text("Water Usage"),
               onTap: () {},
             ),
             ListTile(
+              leading: Icon(Icons.money),
               title: Text("Balances"),
               onTap: () {},
             ),
             ListTile(
+              leading: Icon(Icons.logout),
               title: Text("Log Out"),
               onTap: () {
                 Navigator.push(
@@ -119,15 +131,22 @@ class _BuildingManagerDashboardState extends State<BuildingManagerDashboard> {
                     offset: Offset(0, 3),
                   )
                 ]),
-            child: Column(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Center(
-                    child: Text(
-                  "Rooms",
-                  style: TextStyle(color: Colors.black, fontSize: 20),
-                )),
-                Text("2", style: TextStyle(color: Colors.black, fontSize: 20))
+                Icon(Icons.house),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Center(
+                        child: Text(
+                      "Rooms",
+                      style: TextStyle(color: Colors.black, fontSize: 20),
+                    )),
+                    Text("2",
+                        style: TextStyle(color: Colors.black, fontSize: 20))
+                  ],
+                ),
               ],
             ),
           ),
@@ -146,15 +165,22 @@ class _BuildingManagerDashboardState extends State<BuildingManagerDashboard> {
                     offset: Offset(0, 3),
                   )
                 ]),
-            child: Column(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Center(
-                    child: Text(
-                  "Tenants",
-                  style: TextStyle(color: Colors.black, fontSize: 20),
-                )),
-                Text("2", style: TextStyle(color: Colors.black, fontSize: 20))
+                Icon(Icons.person),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Center(
+                        child: Text(
+                      "Tenants",
+                      style: TextStyle(color: Colors.black, fontSize: 20),
+                    )),
+                    Text("2",
+                        style: TextStyle(color: Colors.black, fontSize: 20))
+                  ],
+                ),
               ],
             ),
           ),
@@ -173,15 +199,22 @@ class _BuildingManagerDashboardState extends State<BuildingManagerDashboard> {
                     offset: Offset(0, 3),
                   )
                 ]),
-            child: Column(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Center(
-                    child: Text(
-                  "Occupied Rooms",
-                  style: TextStyle(color: Colors.black, fontSize: 20),
-                )),
-                Text("2", style: TextStyle(color: Colors.black, fontSize: 20))
+                Icon(Icons.house),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Center(
+                        child: Text(
+                      "Occupied Rooms",
+                      style: TextStyle(color: Colors.black, fontSize: 20),
+                    )),
+                    Text("2",
+                        style: TextStyle(color: Colors.black, fontSize: 20))
+                  ],
+                ),
               ],
             ),
           ),
@@ -200,15 +233,22 @@ class _BuildingManagerDashboardState extends State<BuildingManagerDashboard> {
                     offset: Offset(0, 3),
                   )
                 ]),
-            child: Column(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Center(
-                    child: Text(
-                  "Vacant Rooms",
-                  style: TextStyle(color: Colors.black, fontSize: 20),
-                )),
-                Text("0", style: TextStyle(color: Colors.black, fontSize: 20))
+                Icon(Icons.room),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Center(
+                        child: Text(
+                      "Vacant Rooms",
+                      style: TextStyle(color: Colors.black, fontSize: 20),
+                    )),
+                    Text("0",
+                        style: TextStyle(color: Colors.black, fontSize: 20))
+                  ],
+                ),
               ],
             ),
           ),
@@ -227,16 +267,22 @@ class _BuildingManagerDashboardState extends State<BuildingManagerDashboard> {
                     offset: Offset(0, 3),
                   )
                 ]),
-            child: Column(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Center(
-                    child: Text(
-                  "Rent Collected",
-                  style: TextStyle(color: Colors.black, fontSize: 20),
-                )),
-                Text("300,000/=",
-                    style: TextStyle(color: Colors.black, fontSize: 20))
+                Icon(Icons.money),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Center(
+                        child: Text(
+                      "Rent Collected",
+                      style: TextStyle(color: Colors.black, fontSize: 20),
+                    )),
+                    Text("300,000/=",
+                        style: TextStyle(color: Colors.black, fontSize: 20))
+                  ],
+                ),
               ],
             ),
           ),
@@ -255,16 +301,22 @@ class _BuildingManagerDashboardState extends State<BuildingManagerDashboard> {
                     offset: Offset(0, 3),
                   )
                 ]),
-            child: Column(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Center(
-                    child: Text(
-                  "Payments",
-                  style: TextStyle(color: Colors.black, fontSize: 20),
-                )),
-                Text("150,000/=",
-                    style: TextStyle(color: Colors.black, fontSize: 20))
+                Icon(Icons.money),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Center(
+                        child: Text(
+                      "Payments",
+                      style: TextStyle(color: Colors.black, fontSize: 20),
+                    )),
+                    Text("150,000/=",
+                        style: TextStyle(color: Colors.black, fontSize: 20))
+                  ],
+                ),
               ],
             ),
           ),

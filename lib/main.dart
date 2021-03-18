@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
 //import 'package:flutter/services.dart';
 import 'package:waka/LoginPage.dart';
-//import 'package:waka/building_managers_dashboard.dart';
-//import 'package:waka/add_tenant.dart';
+//import 'package:waka/custom_color.dart';
 
-//Color clr = const Color(0xF51C50);
 void main() {
-  runApp(MaterialApp(
-    title: 'Waka',
-    theme: ThemeData(
-      primarySwatch: Colors.red, // color code #F51C50
-      visualDensity: VisualDensity.adaptivePlatformDensity,
-    ),
-    home: HomePage(),
-    debugShowCheckedModeBanner: false,
-  ));
+  runApp(WakaHome());
+}
+
+class WakaHome extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Waka',
+      theme: ThemeData(
+        primarySwatch: Colors.purple,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: HomePage(),
+      debugShowCheckedModeBanner: false,
+    );
+  }
 }
 
 class HomePage extends StatelessWidget {
@@ -29,13 +34,13 @@ class HomePage extends StatelessWidget {
         children: [
           Text(
             "Waka",
-            style: TextStyle(color: Colors.red, fontSize: 125),
+            style: TextStyle(color: Colors.purple[900], fontSize: 125),
           ),
           Center(
             child: FlatButton(
               child: Text('Get started',
                   style: TextStyle(
-                    color: Colors.red,
+                    color: Colors.purple[900],
                     fontSize: 25,
                     decoration: TextDecoration.underline,
                   )),
