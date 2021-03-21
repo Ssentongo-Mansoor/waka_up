@@ -134,7 +134,15 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Icon(Icons.house),
+                Container(
+                  width: 40,
+                  height: 40,
+                  child: null,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage("assets/images/phone.png"))),
+                ),
+                //Icon(Icons.house),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -168,7 +176,14 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Icon(Icons.person),
+                Container(
+                  width: 40,
+                  height: 40,
+                  child: null,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage("assets/images/phone.png"))),
+                ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -202,7 +217,14 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Icon(Icons.house),
+                Container(
+                  width: 40,
+                  height: 40,
+                  child: null,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage("assets/images/phone.png"))),
+                ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -236,7 +258,14 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Icon(Icons.room),
+                Container(
+                  width: 40,
+                  height: 40,
+                  child: null,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage("assets/images/phone.png"))),
+                ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -270,7 +299,14 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Icon(Icons.money),
+                Container(
+                  width: 40,
+                  height: 40,
+                  child: null,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage("assets/images/phone.png"))),
+                ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -304,7 +340,14 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Icon(Icons.money),
+                Container(
+                  width: 40,
+                  height: 40,
+                  child: null,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage("assets/images/phone.png"))),
+                ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [

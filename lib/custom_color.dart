@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-MaterialColor myColor = MaterialColor(0x6777EF, color);
+MaterialColor myColor = MaterialColor(0xFF6777EF, color);
 Map<int, Color> color = {
   50: Color.fromRGBO(4, 131, 184, .1),
   100: Color.fromRGBO(4, 131, 184, .2),

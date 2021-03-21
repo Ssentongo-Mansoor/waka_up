@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 //import 'package:flutter/services.dart';
 import 'package:waka/LoginPage.dart';
-//import 'package:waka/custom_color.dart';
+import 'package:waka/custom_color.dart';
 
 void main() {
   runApp(WakaHome());
@@ -13,7 +13,7 @@ class WakaHome extends StatelessWidget {
     return MaterialApp(
       title: 'Waka',
       theme: ThemeData(
-        primarySwatch: Colors.purple,
+        primarySwatch: myColor,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: HomePage(),
@@ -34,20 +34,20 @@ class HomePage extends StatelessWidget {
         children: [
           Text(
             "Waka",
-            style: TextStyle(color: Colors.purple[900], fontSize: 125),
+            style: TextStyle(color: myColor, fontSize: 125),
           ),
           Center(
             child: FlatButton(
               child: Text('Get started',
                   style: TextStyle(
-                    color: Colors.purple[900],
+                    color: myColor,
                     fontSize: 25,
                     decoration: TextDecoration.underline,
                   )),
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => LoginRoute()),
+                  MaterialPageRoute(builder: (context) => Login()),
                 );
               },
             ),
