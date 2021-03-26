@@ -2,12 +2,12 @@ import 'dart:core';
 import 'dart:convert';
 import 'package:form_validator/form_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:waka/landlord_dashboard.dart';
+import 'package:waka/views/landlord_dashboard.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 //import 'package:waka/user_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:form_validator/form_validator.dart';
-import 'package:waka/custom_color.dart';
+import 'package:waka/views/custom_color.dart';
 
 class Login extends StatefulWidget {
   Login({Key key, this.title}) : super(key: key);
@@ -85,23 +85,6 @@ class _LoginState extends State<Login> {
         content: Text(message),
       );
       _scaffoldKey.currentState.showSnackBar(snackBar);
-      // Showing Alert Dialog with Response JSON Message.
-      /*  showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: new Text(message),
-            actions: <Widget>[
-              FlatButton(
-                child: new Text("OK"),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      ); */
     }
   }
 

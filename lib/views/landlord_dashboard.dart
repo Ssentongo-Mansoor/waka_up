@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:waka/main.dart';
-import 'package:waka/view_tenants.dart';
-import 'package:waka/view_units.dart';
-import 'package:waka/view_payments.dart';
-import 'package:waka/account.dart';
+//import 'package:waka/main.dart';
+import 'package:waka/views/view_tenants.dart';
+import 'package:waka/views/view_units.dart';
+import 'package:waka/views/view_units_subscriptions.dart';
+import 'package:waka/views/view_payments.dart';
+import 'package:waka/views/account.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:waka/views/LoginPage.dart';
 
 class LandLordDashboard extends StatefulWidget {
   @override
@@ -64,11 +67,22 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
                 }),
             ListTile(
               leading: Icon(Icons.location_city),
-              title: Text("Unit Subscriptions"),
+              title: Text("View Units"),
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => ViewUnits()),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.location_city),
+              title: Text("Unit Subscriptions"),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ViewUnitsSubscriptions()),
                 );
               },
             ),
@@ -82,10 +96,6 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
                 );
               },
             ),
-            ListTile(
-                leading: Icon(Icons.book),
-                title: Text("Expense records"),
-                onTap: () {}),
             ListTile(
               leading: Icon(Icons.power),
               title: Text("Electricity Usage"),
@@ -104,11 +114,12 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
             ListTile(
               leading: Icon(Icons.logout),
               title: Text("Log Out"),
-              onTap: () {
-                Navigator.push(
+              onTap: () async {
+                showLogoutAlertDialog(context);
+                /* Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => HomePage()),
-                );
+                ); */
               },
             ),
           ],
@@ -365,6 +376,42 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
           ),
         ],
       ),
+    );
+  }
+
+  showLogoutAlertDialog(BuildContext context) {
+    // set up the buttons
+    Widget cancelButton = FlatButton(
+      child: Text("Cancel"),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    );
+    Widget continueButton = FlatButton(
+      child: Text("Continue"),
+      onPressed: () async {
+        Navigator.pop(context);
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.remove('email');
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (BuildContext ctx) => Login()));
+      },
+    );
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("Confirm Logout"),
+      content: Text("Proceed to logout?"),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
     );
   }
 }
