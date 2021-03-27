@@ -19,7 +19,7 @@ class SubscriptionsProvider extends ChangeNotifier {
   SubscriptionsProvider() {
     print("SUBSCRIPTIONS CONSTRUCTOR");
 
-    // getSpecificUserSubscriptionsInformation();
+    getSpecificUserSubscriptionsInformation();
   }
 
   // getters

@@ -19,6 +19,7 @@ class PaymentsProvider extends ChangeNotifier {
   // constructor
   PaymentsProvider() {
     // getSpecificUserPaymentsInformation();
+    print("PAYMENTS PROVIDER CONSTRUCTOR");
     try {
       PaymentsApiService.getUserSpecificPayments(getPaymentsList, this)
           .then((specificUserPaymentsList) {

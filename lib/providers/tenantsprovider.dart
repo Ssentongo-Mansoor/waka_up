@@ -21,6 +21,9 @@ class TenantsProvider extends ChangeNotifier {
   String _addedby;
   Tenant _singleTenant;
   List<Tenant> _tenantsList = [];
+  TenantsProvider() {
+    getSpecificTenantsList();
+  }
   // getters
   Tenant get getSingleTenant => _singleTenant;
   List<Tenant> get getTenantList => _tenantsList;

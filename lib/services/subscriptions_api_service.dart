@@ -6,9 +6,9 @@ import 'dart:convert';
 class SubscritpionsApiService {
   // create static api endpoint
   static const String ALL_SUBSCRIPTIONS_API_ENDPOINT =
-      "http://192.168.43.208/waka/v1.0/requests/subscriptions/subs.php";
+      "http://192.168.43.254/waka/v1.0/requests/subscriptions/subs.php";
   static const String SPECIFIC_USER_SUBSCRIPTION_API_ENDPOINT =
-      "http://192.168.43.208/waka/v1.0/requests/subscriptions/subs.php";
+      "http://192.168.43.254/waka/v1.0/requests/subscriptions/subs.php";
 
   // create function to fetch all hostels info
   static Future<List<Subscriptions>> getAllSubscriptions(
@@ -46,8 +46,8 @@ class SubscritpionsApiService {
     // initialize room search parameters
     var _buildingManagerEmail;
     // assign values to the room search parameters
-    _buildingManagerEmail = subscriptionsProvider.getBuildingManagerEmail;
-
+    // _buildingManagerEmail = subscriptionsProvider.getBuildingManagerEmail;
+    _buildingManagerEmail = "buildingmanager@wakaug.com";
     print('Email ID: ' + _buildingManagerEmail);
 
     // set the data

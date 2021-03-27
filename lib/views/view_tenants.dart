@@ -1,7 +1,6 @@
-//import 'dart:html';
-
 import 'package:flutter/material.dart';
-import 'package:waka/views/custom_color.dart';
+import 'package:provider/provider.dart';
+import 'package:waka/providers/tenantsprovider.dart';
 
 class ViewTenants extends StatefulWidget {
   @override
@@ -98,99 +97,80 @@ class _ViewTenantsState extends State<ViewTenants> {
                 ),
               ),
             ],
-            rows: const <DataRow>[
-              DataRow(
-                cells: <DataCell>[
-                  DataCell(Text('Guma')),
-                  DataCell(Text('Amutuhaire')),
-                  DataCell(Text('Mujaidu')),
-                  DataCell(Text('Male')),
-                  DataCell(Text('CM19647887875')),
-                  DataCell(Text('RM 001')),
-                  DataCell(Text('amutuhaireguma10@gmail.com')),
-                  DataCell(Text('+256-767-788-657')),
-                  DataCell(Text('25/09/2021')),
-                  DataCell(Text('Student')),
-                  DataCell(Text('Makerere University')),
-                ],
-              ),
-              DataRow(
-                cells: <DataCell>[
-                  DataCell(Text('Guma')),
-                  DataCell(Text('Amutuhaire')),
-                  DataCell(Text('Mujaidu')),
-                  DataCell(Text('Male')),
-                  DataCell(Text('CM19647887875')),
-                  DataCell(Text('RM 001')),
-                  DataCell(Text('amutuhaireguma10@gmail.com')),
-                  DataCell(Text('+256-767-788-657')),
-                  DataCell(Text('25/09/2021')),
-                  DataCell(Text('Student')),
-                  DataCell(Text('Makerere University')),
-                ],
-              ),
-              DataRow(
-                cells: <DataCell>[
-                  DataCell(Text('Guma')),
-                  DataCell(Text('Amutuhaire')),
-                  DataCell(Text('Mujaidu')),
-                  DataCell(Text('Male')),
-                  DataCell(Text('CM19647887875')),
-                  DataCell(Text('RM 001')),
-                  DataCell(Text('amutuhaireguma10@gmail.com')),
-                  DataCell(Text('+256-767-788-657')),
-                  DataCell(Text('25/09/2021')),
-                  DataCell(Text('Student')),
-                  DataCell(Text('Makerere University')),
-                ],
-              ),
-              DataRow(
-                cells: <DataCell>[
-                  DataCell(Text('Guma')),
-                  DataCell(Text('Amutuhaire')),
-                  DataCell(Text('Mujaidu')),
-                  DataCell(Text('Male')),
-                  DataCell(Text('CM19647887875')),
-                  DataCell(Text('RM 001')),
-                  DataCell(Text('amutuhaireguma10@gmail.com')),
-                  DataCell(Text('+256-767-788-657')),
-                  DataCell(Text('25/09/2021')),
-                  DataCell(Text('Student')),
-                  DataCell(Text('Makerere University')),
-                ],
-              ),
-              DataRow(
-                cells: <DataCell>[
-                  DataCell(Text('Guma')),
-                  DataCell(Text('Amutuhaire')),
-                  DataCell(Text('Mujaidu')),
-                  DataCell(Text('Male')),
-                  DataCell(Text('CM19647887875')),
-                  DataCell(Text('RM 001')),
-                  DataCell(Text('amutuhaireguma10@gmail.com')),
-                  DataCell(Text('+256-767-788-657')),
-                  DataCell(Text('25/09/2021')),
-                  DataCell(Text('Student')),
-                  DataCell(Text('Makerere University')),
-                ],
-              ),
-              DataRow(
-                cells: <DataCell>[
-                  DataCell(Text('Guma')),
-                  DataCell(Text('Amutuhaire')),
-                  DataCell(Text('Mujaidu')),
-                  DataCell(Text('Male')),
-                  DataCell(Text('CM19647887875')),
-                  DataCell(Text('RM 001')),
-                  DataCell(Text('amutuhaireguma10@gmail.com')),
-                  DataCell(Text('+256-767-788-657')),
-                  DataCell(Text('25/09/2021')),
-                  DataCell(Text('Student')),
-                  DataCell(Text('Makerere University')),
-                ],
-              ),
-            ],
+            rows: _tenantsRows(),
           ),
         ));
+  }
+
+  List<DataRow> _tenantsRows() {
+    var tenantsProvider = Provider.of<TenantsProvider>(context);
+    return tenantsProvider.getTenantList
+        .map(
+          (data) => DataRow(
+            cells: [
+              DataCell(
+                Container(
+                  width: 100,
+                  child: Text(data.firstName),
+                ),
+              ),
+              DataCell(
+                Container(
+                  width: 100,
+                  child: Text(data.lastName),
+                ),
+              ),
+              DataCell(
+                Container(
+                  width: 100,
+                  child: Text(data.otherName),
+                ),
+              ),
+              DataCell(
+                Container(
+                  width: 100,
+                  child: Text(data.gender),
+                ),
+              ),
+              DataCell(
+                Container(
+                  width: 100,
+                  child: Text(data.nationalIdNumber),
+                ),
+              ),
+              DataCell(
+                Container(
+                  width: 100,
+                  child: Text(data.emailAddress),
+                ),
+              ),
+              DataCell(
+                Container(
+                  width: 100,
+                  child: Text(data.phoneNumber),
+                ),
+              ),
+              DataCell(
+                Container(
+                  width: 100,
+                  child: Text(data.registrationDate),
+                ),
+              ),
+              DataCell(
+                Container(
+                  width: 100,
+                  child: Text(data.occupation),
+                ),
+              ),
+              DataCell(
+                Container(
+                  width: 100,
+                  child: Text(data.companyName),
+                ),
+              )
+            ],
+          ),
+        )
+        .toList();
   }
 }

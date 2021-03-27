@@ -6,9 +6,9 @@ import 'dart:convert';
 class PaymentsApiService {
   // create static api endpoint
   static const String ALL_PAYMENTS_API_ENDPOINT =
-      "http://192.168.43.254/waka/v1.0/requests/payment/payments.php";
+      "http://192.168.43.208/waka/v1.0/requests/payment/payments.php";
   static const String SPECIFIC_USER_PAYMENTS_API_ENDPOINT =
-      "http://192.168.43.254/waka/v1.0/requests/payment/payments.php";
+      "http://192.168.43.208/waka/v1.0/requests/payment/payments.php";
 
   // create function to fetch all hostels info
   static Future<List<Payments>> getAllPayments(

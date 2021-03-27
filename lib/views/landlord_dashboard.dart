@@ -7,6 +7,11 @@ import 'package:waka/views/view_payments.dart';
 import 'package:waka/views/account.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:waka/views/LoginPage.dart';
+import 'package:provider/provider.dart';
+import 'package:waka/providers/totalunitsprovider.dart';
+import 'package:waka/providers/total_tenants_provider.dart';
+import 'package:waka/providers/occupied_rooms_provider.dart';
+import 'package:waka/providers/total_vaccant_rooms_provider.dart';
 
 class LandLordDashboard extends StatefulWidget {
   @override
@@ -16,6 +21,13 @@ class LandLordDashboard extends StatefulWidget {
 class _LandLordDashboardState extends State<LandLordDashboard> {
   @override
   Widget build(BuildContext context) {
+    var _totalUnitsProvider = Provider.of<TotalUnitsProvider>(context);
+    var _totalTenantsProvider = Provider.of<TotalUnitsProvider>(context);
+    var _totalRoomsOccupiedProvider =
+        Provider.of<TotalOccupiedRoomsProvider>(context);
+    var _totalVaccantRoomsProvider =
+        Provider.of<TotalVaccantRoomsProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Center(child: Text("Dashboard")),
@@ -162,7 +174,9 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
                       "Rooms",
                       style: TextStyle(color: Colors.black, fontSize: 20),
                     )),
-                    Text("2",
+                    Text(
+                        _totalUnitsProvider.getTotalUnitsObject.totalunits
+                            .toString(),
                         style: TextStyle(color: Colors.black, fontSize: 20))
                   ],
                 ),
@@ -203,7 +217,11 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
                       "Tenants",
                       style: TextStyle(color: Colors.black, fontSize: 20),
                     )),
-                    Text("2",
+                    Text(
+                        _totalTenantsProvider.getTotalUnitsObjectFromApi
+                            .toString(),
+                        /* _totalTenantsProvider.getTotalTenantsObject.totaltenants
+                            .toString() */
                         style: TextStyle(color: Colors.black, fontSize: 20))
                   ],
                 ),
@@ -244,7 +262,10 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
                       "Occupied Rooms",
                       style: TextStyle(color: Colors.black, fontSize: 20),
                     )),
-                    Text("2",
+                    Text(
+                        _totalRoomsOccupiedProvider
+                            .getTotalOccupiedRoomsObject.totaloccupiedrooms
+                            .toString(),
                         style: TextStyle(color: Colors.black, fontSize: 20))
                   ],
                 ),
@@ -285,7 +306,10 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
                       "Vacant Rooms",
                       style: TextStyle(color: Colors.black, fontSize: 20),
                     )),
-                    Text("0",
+                    Text(
+                        _totalVaccantRoomsProvider
+                            .getTotalVaccantRoomsObject.totalvaccantrooms
+                            .toString(),
                         style: TextStyle(color: Colors.black, fontSize: 20))
                   ],
                 ),

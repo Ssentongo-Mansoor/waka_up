@@ -1,6 +1,8 @@
 //import 'dart:html';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:waka/providers/subscriptionsprovider.dart';
 
 class ViewUnitsSubscriptions extends StatefulWidget {
   @override
@@ -72,39 +74,68 @@ class _ViewUnitsSubscriptionsState extends State<ViewUnitsSubscriptions> {
                 style: TextStyle(fontStyle: FontStyle.italic),
               )),
             ],
-            rows: const <DataRow>[
-              DataRow(cells: <DataCell>[
-                DataCell(Text('13')),
-                DataCell(Text('7')),
-                DataCell(Text('2021-02-18')),
-                DataCell(Text('2021-02-28')),
-                DataCell(Text('50000')),
-                DataCell(Text('50000')),
-                DataCell(Text('0')),
-                DataCell(Text('602dbdc7e9696')),
-              ]),
-              DataRow(cells: <DataCell>[
-                DataCell(Text('13')),
-                DataCell(Text('7')),
-                DataCell(Text('2021-02-18')),
-                DataCell(Text('2021-02-28')),
-                DataCell(Text('50000')),
-                DataCell(Text('50000')),
-                DataCell(Text('0')),
-                DataCell(Text('602dbdc7e9696')),
-              ]),
-              DataRow(cells: <DataCell>[
-                DataCell(Text('13')),
-                DataCell(Text('7')),
-                DataCell(Text('2021-02-18')),
-                DataCell(Text('2021-02-28')),
-                DataCell(Text('50000')),
-                DataCell(Text('50000')),
-                DataCell(Text('0')),
-                DataCell(Text('602dbdc7e9696')),
-              ]),
-            ],
+            rows: _subscriptionsRows(),
           ),
         ));
+  }
+
+  List<DataRow> _subscriptionsRows() {
+    var subscriptionsProvider = Provider.of<SubscriptionsProvider>(context);
+    return subscriptionsProvider.getSubscriptionsList
+        .map(
+          (data) => DataRow(
+            cells: [
+              DataCell(
+                Container(
+                  width: 100,
+                  child: Text(data.roomid),
+                ),
+              ),
+              DataCell(
+                Container(
+                  width: 100,
+                  child: Text(data.tenantid),
+                ),
+              ),
+              DataCell(
+                Container(
+                  width: 100,
+                  child: Text(data.startdate),
+                ),
+              ),
+              DataCell(
+                Container(
+                  width: 100,
+                  child: Text(data.enddate),
+                ),
+              ),
+              DataCell(
+                Container(
+                  width: 100,
+                  child: Text(data.price.toString()),
+                ),
+              ),
+              DataCell(
+                Container(
+                  width: 100,
+                  child: Text(data.paid.toString()),
+                ),
+              ),
+              DataCell(
+                Container(
+                  width: 100,
+                  child: Text(data.remaining),
+                ),
+              ),
+              DataCell(
+                Container(
+                  width: 100,
+                  child: Text(data.refCode),
+                ),
+              ),
+            ],
+          ),
+        )
+        .toList();
   }
 }

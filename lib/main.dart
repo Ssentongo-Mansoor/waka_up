@@ -9,6 +9,10 @@ import 'package:waka/providers/paymentsprovider.dart';
 import 'package:waka/providers/subscriptionsprovider.dart';
 import 'package:waka/providers/tenantsprovider.dart';
 import 'package:waka/providers/roomsprovider.dart';
+import 'package:waka/providers/totalunitsprovider.dart';
+import 'package:waka/providers/total_tenants_provider.dart';
+import 'package:waka/providers/occupied_rooms_provider.dart';
+import 'package:waka/providers/total_vaccant_rooms_provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,6 +35,15 @@ class WakaHome extends StatelessWidget {
         ),
         ChangeNotifierProvider.value(
           value: RoomsProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: TotalUnitsProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: TotalTenantsProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: TotalVaccantRoomsProvider(),
         ),
       ],
       child: MaterialApp(
