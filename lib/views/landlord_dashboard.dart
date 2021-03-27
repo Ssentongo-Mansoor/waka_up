@@ -12,6 +12,7 @@ import 'package:waka/providers/totalunitsprovider.dart';
 import 'package:waka/providers/total_tenants_provider.dart';
 import 'package:waka/providers/occupied_rooms_provider.dart';
 import 'package:waka/providers/total_vaccant_rooms_provider.dart';
+import 'package:waka/providers/tenantsprovider.dart';
 
 class LandLordDashboard extends StatefulWidget {
   @override
@@ -22,11 +23,12 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
   @override
   Widget build(BuildContext context) {
     var _totalUnitsProvider = Provider.of<TotalUnitsProvider>(context);
-    var _totalTenantsProvider = Provider.of<TotalUnitsProvider>(context);
+    // var _totalTenantsProvider = Provider.of<TotalTenantsProvider>(context);
     var _totalRoomsOccupiedProvider =
         Provider.of<TotalOccupiedRoomsProvider>(context);
     var _totalVaccantRoomsProvider =
         Provider.of<TotalVaccantRoomsProvider>(context);
+    var _tenantsProvider = Provider.of<TenantsProvider>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -176,7 +178,11 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
                     )),
                     Text(
                         _totalUnitsProvider.getTotalUnitsObject.totalunits
-                            .toString(),
+                                    .toString() !=
+                                null
+                            ? _totalUnitsProvider.getTotalUnitsObject.totalunits
+                                .toString()
+                            : 0,
                         style: TextStyle(color: Colors.black, fontSize: 20))
                   ],
                 ),
@@ -217,11 +223,7 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
                       "Tenants",
                       style: TextStyle(color: Colors.black, fontSize: 20),
                     )),
-                    Text(
-                        _totalTenantsProvider.getTotalUnitsObjectFromApi
-                            .toString(),
-                        /* _totalTenantsProvider.getTotalTenantsObject.totaltenants
-                            .toString() */
+                    Text(_tenantsProvider.getTenantList.length.toString(),
                         style: TextStyle(color: Colors.black, fontSize: 20))
                   ],
                 ),

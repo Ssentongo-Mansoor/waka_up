@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:waka/models/total_occupied_rooms.dart';
 import 'package:waka/providers/occupied_rooms_provider.dart';
 import 'package:http/http.dart' as http;
@@ -8,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class TotalOccupiedRoomsApiService {
   // create static api endpoint
   static const String SPECIFIC_TOTAL_VACCANT_ROOMS_API_ENDPOINT =
-      "http://192.168.43.254/waka/waka/v1.0/requests/dashboard/units_vacant.php";
+      "http://192.168.43.254/waka/v1.0/requests/dashboard/units_occupied.php";
 
   // create function to fetch specific tenants info
   static Future<TotalOccupiedRooms> getTotalOccupiedRooms(

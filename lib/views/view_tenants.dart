@@ -141,6 +141,12 @@ class _ViewTenantsState extends State<ViewTenants> {
               DataCell(
                 Container(
                   width: 100,
+                  child: Text(data.roomId),
+                ),
+              ),
+              DataCell(
+                Container(
+                  width: 100,
                   child: Text(data.emailAddress),
                 ),
               ),

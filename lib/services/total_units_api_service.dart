@@ -8,7 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class TotalUnitsApiService {
   // create static api endpoint
   static const String SPECIFIC_TOTAL_UNITS_API_ENDPOINT =
-      "http://192.168.43.208/waka/v1.0/requests/dashboard/units_total.php";
+      "http://192.168.43.254/waka/v1.0/requests/dashboard/units_total.php";
 
   // create function to fetch specific tenants info
   static Future<TotalUnits> getTotalUnits(TotalUnits totalUnitsObject,

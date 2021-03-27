@@ -10,7 +10,7 @@ class TotalTenantsProvider extends ChangeNotifier {
   TotalTenants get getTotalTenantsObject => _totalTenantsObject;
   TotalTenantsProvider() {
     print("TOTAL TENANTS CONSTRUCTOR");
-    getTotalTenantsObjectFromApi();
+    // getTotalTenantsObjectFromApi();
   }
   // setters
   void setTotalTenants(int totalTenants) {

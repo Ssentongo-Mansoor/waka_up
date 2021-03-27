@@ -45,6 +45,9 @@ class WakaHome extends StatelessWidget {
         ChangeNotifierProvider.value(
           value: TotalVaccantRoomsProvider(),
         ),
+        ChangeNotifierProvider.value(
+          value: TotalOccupiedRoomsProvider(),
+        ),
       ],
       child: MaterialApp(
         title: 'Waka',

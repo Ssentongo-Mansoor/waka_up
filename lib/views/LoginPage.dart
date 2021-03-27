@@ -41,7 +41,7 @@ class _LoginState extends State<Login> {
     String password = _passwordController.text;
 
     // SERVER LOGIN API URL
-    var url = 'http://192.168.43.254/miah/v1.0/requests/user/login.php';
+    var url = 'http://192.168.43.254/waka/v1.0/requests/user/login.php';
 
     // Store all data with Param Name.
     var data = {'email': email, 'password': password};

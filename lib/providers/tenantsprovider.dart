@@ -22,6 +22,7 @@ class TenantsProvider extends ChangeNotifier {
   Tenant _singleTenant;
   List<Tenant> _tenantsList = [];
   TenantsProvider() {
+    print('TENANTS PROVIDER CONSYRUCTOR');
     getSpecificTenantsList();
   }
   // getters
