@@ -15,18 +15,15 @@ class TenantsApiService {
       List<Tenant> specificTenantsList, TenantsProvider tenantsProvider) async {
     print("POST REQUEST to get specific tenants info");
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    var email = prefs.getString('email');
+    var _landLoadEmail = prefs.getString('email');
     // initialize room search parameters
-    var _buildingManagerEmail;
-    // assign values to the room search parameters
-    // _buildingManagerEmail = email;
-    _buildingManagerEmail = 'buildingmanager@wakaug.com';
-    print('Email ID: ' + _buildingManagerEmail);
+
+    print('Landloard Email: ' + _landLoadEmail);
 
     // set the data
 
     var data = {
-      'email': _buildingManagerEmail,
+      'email': _landLoadEmail,
     };
     print("POST REQUEST to get tenants according to parameters");
     // create a response variable

@@ -2,6 +2,7 @@ import 'package:waka/models/paymentsmodel.dart';
 import 'package:waka/providers/paymentsprovider.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class PaymentsApiService {
   // create static api endpoint
@@ -44,16 +45,15 @@ class PaymentsApiService {
       PaymentsProvider paymentsProvider) async {
     print("POST REQUEST to get specific user payments info");
     // initialize room search parameters
-    //  var _paymentID;
-    // assign values to the room search parameters
-    // _paymentID = paymentsProvider.getPaymentId;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var _landLoadEmail = prefs.getString('email');
 
-    // print('Payment ID: ' + _paymentID);
-    var _email = "buildingmanager@wakaug.com";
+    print('Landloard Email: ' + _landLoadEmail);
+
     // set the data
 
     var data = {
-      'email': _email,
+      'email': _landLoadEmail,
     };
     print("POST REQUEST to get payments according to parameters");
     // create a response variable

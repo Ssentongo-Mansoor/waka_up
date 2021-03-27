@@ -9,10 +9,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:waka/views/LoginPage.dart';
 import 'package:provider/provider.dart';
 import 'package:waka/providers/totalunitsprovider.dart';
-import 'package:waka/providers/total_tenants_provider.dart';
+//import 'package:waka/providers/total_tenants_provider.dart';
 import 'package:waka/providers/occupied_rooms_provider.dart';
 import 'package:waka/providers/total_vaccant_rooms_provider.dart';
 import 'package:waka/providers/tenantsprovider.dart';
+import 'package:waka/providers/total_payments_provider.dart';
 
 class LandLordDashboard extends StatefulWidget {
   @override
@@ -29,6 +30,7 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
     var _totalVaccantRoomsProvider =
         Provider.of<TotalVaccantRoomsProvider>(context);
     var _tenantsProvider = Provider.of<TenantsProvider>(context);
+    var _totalPaymentsProvider = Provider.of<TotalPaymentsProvider>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -120,11 +122,11 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
               title: Text("Water Usage"),
               onTap: () {},
             ),
-            ListTile(
+            /*  ListTile(
               leading: Icon(Icons.money),
               title: Text("Balances"),
               onTap: () {},
-            ),
+            ), */
             ListTile(
               leading: Icon(Icons.logout),
               title: Text("Log Out"),
@@ -165,7 +167,7 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
                   child: null,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage("assets/images/phone.png"))),
+                          image: AssetImage("assets/images/units.png"))),
                 ),
                 //Icon(Icons.house),
                 Column(
@@ -173,7 +175,7 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
                   children: [
                     Center(
                         child: Text(
-                      "Rooms",
+                      "Units",
                       style: TextStyle(color: Colors.black, fontSize: 20),
                     )),
                     Text(
@@ -213,7 +215,7 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
                   child: null,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage("assets/images/phone.png"))),
+                          image: AssetImage("assets/images/tenants.png"))),
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -254,7 +256,8 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
                   child: null,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage("assets/images/phone.png"))),
+                          image:
+                              AssetImage("assets/images/occupied_rooms.png"))),
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -298,14 +301,15 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
                   child: null,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage("assets/images/phone.png"))),
+                          image:
+                              AssetImage("assets/images/vaccant_rooms.png"))),
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Center(
                         child: Text(
-                      "Vacant Rooms",
+                      "Vaccant Rooms",
                       style: TextStyle(color: Colors.black, fontSize: 20),
                     )),
                     Text(
@@ -342,7 +346,8 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
                   child: null,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage("assets/images/phone.png"))),
+                          image:
+                              AssetImage("assets/images/rent_collected.png"))),
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -383,7 +388,7 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
                   child: null,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage("assets/images/phone.png"))),
+                          image: AssetImage("assets/images/payments.png"))),
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -393,7 +398,9 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
                       "Payments",
                       style: TextStyle(color: Colors.black, fontSize: 20),
                     )),
-                    Text("150,000/=",
+                    Text(
+                        _totalPaymentsProvider
+                            .getTotalPaymentsModel.totalPayments,
                         style: TextStyle(color: Colors.black, fontSize: 20))
                   ],
                 ),

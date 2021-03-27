@@ -69,7 +69,7 @@ class _LoginState extends State<Login> {
       //after the login REST api call && response code ==200
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('email', email);
-      prefs.setString('password', password);
+      // prefs.setString('password', password);
       // Navigate to Profile Screen & Sending Email to Next Screen.
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => LandLordDashboard()));

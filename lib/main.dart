@@ -13,6 +13,7 @@ import 'package:waka/providers/totalunitsprovider.dart';
 import 'package:waka/providers/total_tenants_provider.dart';
 import 'package:waka/providers/occupied_rooms_provider.dart';
 import 'package:waka/providers/total_vaccant_rooms_provider.dart';
+import 'package:waka/providers/total_payments_provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -47,6 +48,9 @@ class WakaHome extends StatelessWidget {
         ),
         ChangeNotifierProvider.value(
           value: TotalOccupiedRoomsProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: TotalPaymentsProvider(),
         ),
       ],
       child: MaterialApp(

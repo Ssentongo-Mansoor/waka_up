@@ -15,18 +15,15 @@ class RoomsApiService {
       List<Room> specificRoomsList, RoomsProvider roomsProvider) async {
     print("POST REQUEST to get specific rooms info");
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    var email = prefs.getString('email');
-    // initialize room search parameters
-    var _buildingManagerEmail;
+    var _landLoadEmail = prefs.getString('email');
     // assign values to the room search parameters
-    _buildingManagerEmail = email;
 
-    print('Email ID: ' + _buildingManagerEmail);
+    print('Landloard Email: ' + _landLoadEmail);
 
     // set the data
 
     var data = {
-      'email': _buildingManagerEmail,
+      'email': _landLoadEmail,
     };
     print("POST REQUEST to get roomss according to parameters");
     // create a response variable
