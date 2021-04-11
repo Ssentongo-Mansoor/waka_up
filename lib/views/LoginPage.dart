@@ -6,7 +6,6 @@ import 'package:waka/views/landlord_dashboard.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 //import 'package:waka/user_model.dart';
 import 'package:http/http.dart' as http;
-import 'package:form_validator/form_validator.dart';
 import 'package:waka/views/custom_color.dart';
 
 class Login extends StatefulWidget {
@@ -41,12 +40,12 @@ class _LoginState extends State<Login> {
     String password = _passwordController.text;
 
     // SERVER LOGIN API URL
+    /* API Offline
     var url = 'http://192.168.43.254/waka/v1.0/requests/user/login.php';
-
-    /* API Online
-    var url = 'http://api.wakaug.com/v1.0/requests/user/login.php';
-
     */
+
+    //API Online
+    var url = 'http://api.wakaug.com/v1.0/requests/user/login.php';
 
     // Store all data with Param Name.
     var data = {'email': email, 'password': password};

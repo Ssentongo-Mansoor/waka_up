@@ -6,17 +6,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class PaymentsApiService {
   // create static api endpoint
+  /* Api offline
   static const String ALL_PAYMENTS_API_ENDPOINT =
       "http://192.168.43.254/waka/v1.0/requests/payment/payments.php";
   static const String SPECIFIC_USER_PAYMENTS_API_ENDPOINT =
       "http://192.168.43.254/waka/v1.0/requests/payment/payments.php";
-
-  /* From API Online
-  static const String ALL_PAYMENTS_API_ENDPOINT =
-      "http://api.wakaug.com/v1.0/requests/payment/payments.php";
-  static const String SPECIFIC_USER_PAYMENTS_API_ENDPOINT =
-      "http://api.wakaug.com/v1.0/requests/payment/payments.php";
   */
+  //From API Online
+  static const String ALL_PAYMENTS_API_ENDPOINT =
+      "http://api.wakaug.com/v1.0/requests/payment/payments.php";
+  static const String SPECIFIC_USER_PAYMENTS_API_ENDPOINT =
+      "http://api.wakaug.com/v1.0/requests/payment/payments.php";
 
   // create function to fetch all hostels info
   static Future<List<Payments>> getAllPayments(

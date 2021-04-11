@@ -35,4 +35,13 @@ class TotalTenantsProvider extends ChangeNotifier {
       print("Error in Total Tenants Provider: " + e.toString());
     }
   }
+
+  Future<TotalTenants> getTotalTenantsInfo() async {
+    try {
+      return await TotalTenantsApiService.getTotalTenants(
+          _totalTenantsObject, this);
+    } catch (e) {
+      print("Error getting Total Tenants Future:" + e.toString());
+    }
+  }
 }

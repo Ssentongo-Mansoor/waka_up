@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+//import 'package:flutter/cupertino.dart';
 import 'package:waka/models/totalunits.dart';
 import 'package:waka/providers/totalunitsprovider.dart';
 import 'package:http/http.dart' as http;
@@ -7,12 +7,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class TotalUnitsApiService {
   // create static api endpoint
+  /* API Oflline
   static const String SPECIFIC_TOTAL_UNITS_API_ENDPOINT =
       "http://192.168.43.254/waka/v1.0/requests/dashboard/units_total.php";
-  /* Online API
+  */
+  //Online API
   static const String SPECIFIC_TOTAL_UNITS_API_ENDPOINT =
       "http://api.wakaug.com/v1.0/requests/dashboard/units_total.php";
-    */
+
   // create function to fetch specific tenants info
   static Future<TotalUnits> getTotalUnits(TotalUnits totalUnitsObject,
       TotalUnitsProvider totalUnitsProvider) async {

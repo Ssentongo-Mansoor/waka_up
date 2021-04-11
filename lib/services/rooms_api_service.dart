@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+//import 'package:flutter/cupertino.dart';
 import 'package:waka/models/roomsmodel.dart';
 import 'package:waka/providers/roomsprovider.dart';
 import 'package:http/http.dart' as http;
@@ -7,13 +7,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class RoomsApiService {
   // create static api endpoint
-  static const String SPECIFIC_ROOMS_API_ENDPOINT =
+  /*static const String SPECIFIC_ROOMS_API_ENDPOINT =
       "http://192.168.43.254/waka/v1.0/requests/rooms/rooms.php";
-
-  /*online Api 
+*/
+  //online Api
   static const String SPECIFIC_ROOMS_API_ENDPOINT =
       "http://api.wakaug.com/v1.0/requests/rooms/rooms.php";
-  */
 
   // create function to fetch specific tenants info
   static Future<List<Room>> getSpecificRooms(

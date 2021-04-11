@@ -10,7 +10,7 @@ class TotalUnitsProvider extends ChangeNotifier {
   TotalUnits get getTotalUnitsObject => _totalUnitsObject;
   TotalUnitsProvider() {
     print("TOTAL UNITS CONSTRUCTOR");
-    getTotalUnitsObjectFromApi();
+    //  getTotalUnitsObjectFromApi();
   }
   // setters
   void setTotalUnits(int totalUnits) {
@@ -33,6 +33,14 @@ class TotalUnitsProvider extends ChangeNotifier {
       });
     } catch (e) {
       print("Error in Total Units Provider: " + e.toString());
+    }
+  }
+
+  Future<TotalUnits> getTotalUnitsInfo() async {
+    try {
+      return await TotalUnitsApiService.getTotalUnits(_totalUnitsObject, this);
+    } catch (e) {
+      print('Total Units Future error: ' + e.toString());
     }
   }
 }
