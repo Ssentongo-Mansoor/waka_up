@@ -11,7 +11,7 @@ class TotalOccupiedRoomsApiService {
       "http://192.168.43.254/waka/v1.0/requests/dashboard/units_occupied.php";
   */
   // API Online
-  static const String SPECIFIC_TOTAL_VACCANT_ROOMS_API_ENDPOINT =
+  static const String SPECIFIC_TOTAL_OCCUPIED_ROOMS_API_ENDPOINT =
       "http://api.wakaug.com/v1.0/requests/dashboard/units_occupied.php";
 
   // create function to fetch specific tenants info
@@ -34,7 +34,7 @@ class TotalOccupiedRoomsApiService {
     var response;
     // wrap http post request in a try catch block
     try {
-      response = await http.post(SPECIFIC_TOTAL_VACCANT_ROOMS_API_ENDPOINT,
+      response = await http.post(SPECIFIC_TOTAL_OCCUPIED_ROOMS_API_ENDPOINT,
           headers: {"Content-type": "application/json; charset=UTF-8"},
           body: json.encode(data));
       print('Waiting for total occupiedrooms API response.....');

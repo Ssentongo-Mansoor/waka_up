@@ -23,6 +23,9 @@ class LandLordDashboard extends StatefulWidget {
 
 class _LandLordDashboardState extends State<LandLordDashboard> {
   final AsyncMemoizer _memoizer = AsyncMemoizer();
+  final AsyncMemoizer _memoizerTotalUnits = AsyncMemoizer();
+  final AsyncMemoizer _memoizerTotalTenants = AsyncMemoizer();
+  final AsyncMemoizer _memoizerOccupiedRooms = AsyncMemoizer();
   @override
   Widget build(BuildContext context) {
     var _totalUnitsProvider = Provider.of<TotalUnitsProvider>(context);
@@ -33,14 +36,20 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
         Provider.of<TotalVaccantRoomsProvider>(context);
     //var _totalTenantsProvider = Provider.of<TenantsProvider>(context);
     var _totalPaymentsProvider = Provider.of<TotalPaymentsProvider>(context);
-    final _totalUnitsFuture = this._memoizer.runOnce(() async {
+    final _totalUnitsFuture = this._memoizerTotalUnits.runOnce(() async {
       await Future.delayed(Duration(seconds: 2));
       return _totalUnitsProvider.getTotalUnitsInfo();
     });
 
-    final _totalTenantsFuture = this._memoizer.runOnce(() async {
+    final _totalTenantsFuture = this._memoizerTotalTenants.runOnce(() async {
       await Future.delayed(Duration(seconds: 2));
       return _totalTenantsProvider.getTotalTenantsInfo();
+    });
+
+    final _totalOccupiedRoomsFuture =
+        this._memoizerOccupiedRooms.runOnce(() async {
+      await Future.delayed(Duration(seconds: 2));
+      return _totalRoomsOccupiedProvider.getTotalOccupiedRoomsInfo();
     });
 
     return Scaffold(
@@ -189,14 +198,6 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
                       "Units",
                       style: TextStyle(color: Colors.black, fontSize: 20),
                     )),
-                    /* Text(
-                        _totalUnitsProvider.getTotalUnitsObject.totalunits
-                                    .toString() !=
-                                null
-                            ? _totalUnitsProvider.getTotalUnitsObject.totalunits
-                                .toString()
-                            : 0,
-                        style: TextStyle(color: Colors.black, fontSize: 20)) */
                     FutureBuilder(
                       future: _totalUnitsFuture,
                       builder: (BuildContext context, snapshot) {
@@ -259,14 +260,14 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
                     )),
                     FutureBuilder(
                       future: _totalTenantsFuture,
-                      builder: (BuildContext context, snapshot) {
+                      builder: (context, snapshot) {
                         if (snapshot.hasData) {
                           try {
                             return Text(_totalTenantsProvider
                                 .getTotalTenantsObject.totaltenants
                                 .toString());
                           } catch (e) {
-                            print("Error in Tenants Future" + e.toString());
+                            print("Error in Tenants Future: " + e.toString());
                           }
                         }
                         if (snapshot.hasError) {
@@ -321,7 +322,27 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
                       "Occupied Rooms",
                       style: TextStyle(color: Colors.black, fontSize: 20),
                     )),
-                    /* Text(
+                    FutureBuilder(
+                      future: _totalOccupiedRoomsFuture,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          try {
+                            return Text(_totalRoomsOccupiedProvider
+                                .getTotalOccupiedRoomsObject.totaloccupiedrooms
+                                .toString());
+                          } catch (e) {
+                            print("Error with Snapshot");
+                          }
+                        }
+                        if (snapshot.hasError) {
+                          return Text("Something went wrong");
+                        }
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      },
+                    )
+                    /* Text
                         _totalRoomsOccupiedProvider
                             .getTotalOccupiedRoomsObject.totaloccupiedrooms
                             .toString(),

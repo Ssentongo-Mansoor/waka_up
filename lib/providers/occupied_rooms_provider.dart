@@ -11,7 +11,7 @@ class TotalOccupiedRoomsProvider extends ChangeNotifier {
       _totalOccupiedRoomsObject;
   TotalOccupiedRoomsProvider() {
     print("TOTAL OCCUPIEDROOMS CONSTRUCTOR");
-    getTotalOccupiedRoomsObjectFromApi();
+    //  getTotalOccupiedRoomsObjectFromApi();
   }
   // setters
   void setTotalOccupiedRooms(int totalOccupiedRooms) {
@@ -36,6 +36,15 @@ class TotalOccupiedRoomsProvider extends ChangeNotifier {
       });
     } catch (e) {
       print("Error in Total OccupiedRooms Provider: " + e.toString());
+    }
+  }
+
+  Future<TotalOccupiedRooms> getTotalOccupiedRoomsInfo() async {
+    try {
+      return await TotalOccupiedRoomsApiService.getTotalOccupiedRooms(
+          _totalOccupiedRoomsObject, this);
+    } catch (e) {
+      print("Error in Future: " + e.toString());
     }
   }
 }

@@ -19,7 +19,7 @@ class PaymentsProvider extends ChangeNotifier {
   // constructor
   PaymentsProvider() {
     // getSpecificUserPaymentsInformation();
-    print("PAYMENTS PROVIDER CONSTRUCTOR");
+    /*  print("PAYMENTS PROVIDER CONSTRUCTOR");
     try {
       PaymentsApiService.getUserSpecificPayments(getPaymentsList, this)
           .then((specificUserPaymentsList) {
@@ -29,7 +29,7 @@ class PaymentsProvider extends ChangeNotifier {
       });
     } catch (e) {
       print("Error IN Payments Provider: " + e.toString());
-    }
+    } */
   }
 
   // getters

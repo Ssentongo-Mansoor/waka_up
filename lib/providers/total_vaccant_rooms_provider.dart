@@ -10,7 +10,7 @@ class TotalVaccantRoomsProvider extends ChangeNotifier {
   TotalVaccantRooms get getTotalVaccantRoomsObject => _totalVaccantRoomsObject;
   TotalVaccantRoomsProvider() {
     print("TOTAL VACANTROOMS CONSTRUCTOR");
-    getTotalVaccantRoomsObjectFromApi();
+    // getTotalVaccantRoomsObjectFromApi();
   }
   // setters
   void setTotalVaccantRooms(int totalVaccantRooms) {

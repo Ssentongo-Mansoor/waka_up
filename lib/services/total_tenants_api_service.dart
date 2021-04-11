@@ -7,18 +7,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class TotalTenantsApiService {
   // create static api endpoint
-  /* API Oflline
-  static const String SPECIFIC_TOTAL_TENANTS_API_ENDPOINT =
-      "http://192.168.43.254/waka/v1.0/requests/dashboard/tenants/tenants_total.php";
-*/
+
   // Online API
   static const String SPECIFIC_TOTAL_TENANTS_API_ENDPOINT =
-      "http://api.wakaug.com/v1.0/requests/dashboard/tenants/tenants_total.php";
+      "http://api.wakaug.com/v1.0/requests/tenants/total_tenants.php";
 
   // create function to fetch specific tenants info
   static Future<TotalTenants> getTotalTenants(TotalTenants totalTenantsObject,
       TotalTenantsProvider totalTenantsProvider) async {
-    print("POST REQUEST to get total info");
+    print("POST REQUEST to get total TENANTS info");
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var _landLoadEmail = prefs.getString('email');
 

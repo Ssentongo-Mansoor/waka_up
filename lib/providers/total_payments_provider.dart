@@ -8,7 +8,7 @@ class TotalPaymentsProvider extends ChangeNotifier {
   // constructor
   TotalPaymentsProvider() {
     print("TOTAL PAYMENTS PROVIDER CONSTRUCTOR");
-    getTotalPaymentsModelFromApi();
+    // getTotalPaymentsModelFromApi();
   }
   // getters
   String get getTotalPayments => _totalPayments;
