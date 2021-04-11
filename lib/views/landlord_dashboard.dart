@@ -397,6 +397,7 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
               ],
             ),
           ),
+          /*
           Container(
             margin: EdgeInsets.all(20.0),
             height: 120,
@@ -438,7 +439,7 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
                 ),
               ],
             ),
-          ),
+          ), */
           Container(
             margin: EdgeInsets.all(20.0),
             height: 120,

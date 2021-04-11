@@ -51,4 +51,12 @@ class TenantsProvider extends ChangeNotifier {
       print("Tenants getSpecificTenantsList() error: " + e.toString());
     }
   }
+
+  Future<List<Tenant>> getTenantsListInfo() async {
+    try {
+      return await TenantsApiService.getSpecificTenants(_tenantsList, this);
+    } catch (e) {
+      print("Error in Tenants List Future: " + e.toString());
+    }
+  }
 }
