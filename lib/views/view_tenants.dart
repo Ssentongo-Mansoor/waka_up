@@ -122,8 +122,11 @@ class _ViewTenantsState extends State<ViewTenants> {
                     ],
                   );
                 }
-                return Center(
-                  child: CircularProgressIndicator(),
+                return SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
                 );
               },
             )));

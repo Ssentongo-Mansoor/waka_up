@@ -83,8 +83,11 @@ class _ViewUnitsState extends State<ViewUnits> {
                     child: Text('Something went wrong'),
                   );
                 }
-                return Center(
-                  child: CircularProgressIndicator(),
+                return SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
                 );
               },
             )));

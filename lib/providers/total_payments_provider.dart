@@ -37,4 +37,13 @@ class TotalPaymentsProvider extends ChangeNotifier {
           e.toString());
     }
   }
+
+  Future<TotalPayment> getTotalPaymentsInfo() async {
+    try {
+      return await TotalPaymentsApiService.getTotalPayments(
+          _totalPaymentsModel, this);
+    } catch (e) {
+      print("Error in the Future : " + e.toString());
+    }
+  }
 }

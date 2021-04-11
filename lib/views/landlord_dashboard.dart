@@ -27,6 +27,7 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
   final AsyncMemoizer _memoizerTotalTenants = AsyncMemoizer();
   final AsyncMemoizer _memoizerOccupiedRooms = AsyncMemoizer();
   final AsyncMemoizer _memoizerVaccantRooms = AsyncMemoizer();
+  final AsyncMemoizer _memoizerTotalPayments = AsyncMemoizer();
   @override
   Widget build(BuildContext context) {
     var _totalUnitsProvider = Provider.of<TotalUnitsProvider>(context);
@@ -57,6 +58,11 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
         this._memoizerVaccantRooms.runOnce(() async {
       await Future.delayed(Duration(seconds: 2));
       return _totalVaccantRoomsProvider.getTotalVaccantRoomsInfo();
+    });
+
+    final _totalPaymentsFuture = this._memoizerTotalPayments.runOnce(() async {
+      await Future.delayed(Duration(seconds: 2));
+      return _totalPaymentsProvider.getTotalPaymentsInfo();
     });
 
     return Scaffold(
@@ -502,6 +508,26 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
                       "Payments",
                       style: TextStyle(color: Colors.black, fontSize: 20),
                     )),
+                    FutureBuilder(
+                      future: _totalPaymentsFuture,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          try {
+                            return Text(_totalPaymentsProvider
+                                .getTotalPaymentsModel.totalPayments
+                                .toString());
+                          } catch (e) {
+                            print("Error in snapshot" + e.toString());
+                          }
+                        }
+                        if (snapshot.hasError) {
+                          return Text("Something went wrong");
+                        }
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      },
+                    )
                     /* Text(
                         _totalPaymentsProvider
                             .getTotalPaymentsModel.totalPayments,

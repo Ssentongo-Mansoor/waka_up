@@ -82,7 +82,12 @@ class _ViewPaymentsState extends State<ViewPayments> {
                   }
                 }
 
-                return Center(child: CircularProgressIndicator());
+                return SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                );
               },
             )));
   }

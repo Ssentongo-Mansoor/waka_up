@@ -96,8 +96,11 @@ class _ViewUnitsSubscriptionsState extends State<ViewUnitsSubscriptions> {
                 if (snapshot.hasError) {
                   return Text("Something went wrong");
                 }
-                return Center(
-                  child: CircularProgressIndicator(),
+                return SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
                 );
               },
             )));
