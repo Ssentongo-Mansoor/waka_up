@@ -125,4 +125,13 @@ class PaymentsProvider extends ChangeNotifier {
       print("Error IN Payments Provider: " + e.toString());
     }
   }
+
+  Future<List<Payments>> getPaymentsListInfo() async {
+    try {
+      return await PaymentsApiService.getUserSpecificPayments(
+          getPaymentsList, this);
+    } catch (e) {
+      print("Error in the Payments List Future" + e.toString());
+    }
+  }
 }

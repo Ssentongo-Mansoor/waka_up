@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:waka/providers/paymentsprovider.dart';
 import 'package:provider/provider.dart';
+import 'package:async/async.dart';
 
 class ViewPayments extends StatefulWidget {
   @override
@@ -10,63 +11,80 @@ class ViewPayments extends StatefulWidget {
 }
 
 class _ViewPaymentsState extends State<ViewPayments> {
+  final AsyncMemoizer _memoizerPaymentsList = AsyncMemoizer();
   @override
   Widget build(BuildContext context) {
     var paymentsProvider = Provider.of<PaymentsProvider>(context);
+    final _paymentsListFuture = this._memoizerPaymentsList.runOnce(() async {
+      await Future.delayed(Duration(seconds: 2));
+      return paymentsProvider.getPaymentsListInfo();
+    });
     return Scaffold(
         appBar: AppBar(
           title: Center(child: Text("View Payments")),
         ),
         body: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: DataTable(
-            columns: const <DataColumn>[
-              DataColumn(
-                label: Text(
-                  'Payment ID',
-                  style: TextStyle(fontStyle: FontStyle.italic),
-                ),
-              ),
-              DataColumn(
-                label: Text(
-                  'Tenant ID',
-                  style: TextStyle(fontStyle: FontStyle.italic),
-                ),
-              ),
-              DataColumn(
-                  label: Text(
-                'Payment for',
-                style: TextStyle(fontStyle: FontStyle.italic),
-              )),
-              DataColumn(
-                  label: Text(
-                'Period',
-                style: TextStyle(fontStyle: FontStyle.italic),
-              )),
-              DataColumn(
-                  label: Text(
-                'Start Date',
-                style: TextStyle(fontStyle: FontStyle.italic),
-              )),
-              DataColumn(
-                  label: Text(
-                'End Date',
-                style: TextStyle(fontStyle: FontStyle.italic),
-              )),
-              DataColumn(
-                  label: Text(
-                'Amount',
-                style: TextStyle(fontStyle: FontStyle.italic),
-              )),
-              DataColumn(
-                  label: Text(
-                'Balance',
-                style: TextStyle(fontStyle: FontStyle.italic),
-              )),
-            ],
-            rows: _paymentRows(),
-          ),
-        ));
+            scrollDirection: Axis.horizontal,
+            child: FutureBuilder(
+              future: _paymentsListFuture,
+              builder: (BuildContext context, snapshot) {
+                if (snapshot.hasData) {
+                  try {
+                    return DataTable(
+                      columns: const <DataColumn>[
+                        DataColumn(
+                          label: Text(
+                            'Payment ID',
+                            style: TextStyle(fontStyle: FontStyle.italic),
+                          ),
+                        ),
+                        DataColumn(
+                          label: Text(
+                            'Tenant ID',
+                            style: TextStyle(fontStyle: FontStyle.italic),
+                          ),
+                        ),
+                        DataColumn(
+                            label: Text(
+                          'Payment for',
+                          style: TextStyle(fontStyle: FontStyle.italic),
+                        )),
+                        DataColumn(
+                            label: Text(
+                          'Period',
+                          style: TextStyle(fontStyle: FontStyle.italic),
+                        )),
+                        DataColumn(
+                            label: Text(
+                          'Start Date',
+                          style: TextStyle(fontStyle: FontStyle.italic),
+                        )),
+                        DataColumn(
+                            label: Text(
+                          'End Date',
+                          style: TextStyle(fontStyle: FontStyle.italic),
+                        )),
+                        DataColumn(
+                            label: Text(
+                          'Amount',
+                          style: TextStyle(fontStyle: FontStyle.italic),
+                        )),
+                        DataColumn(
+                            label: Text(
+                          'Balance',
+                          style: TextStyle(fontStyle: FontStyle.italic),
+                        )),
+                      ],
+                      rows: _paymentRows(),
+                    );
+                  } catch (e) {
+                    print("Error with a snapshot");
+                  }
+                }
+
+                return Center(child: CircularProgressIndicator());
+              },
+            )));
   }
 
   List<DataRow> _paymentRows() {
