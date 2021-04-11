@@ -56,7 +56,7 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
       appBar: AppBar(
         title: Center(child: Text("Dashboard")),
       ),
-      bottomNavigationBar: BottomNavigationBar(
+      /*bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: 0,
         iconSize: 25.0,
@@ -75,6 +75,7 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
               label: 'Account')
         ],
       ),
+      */
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
@@ -132,7 +133,7 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
                 );
               },
             ),
-            ListTile(
+            /*ListTile(
               leading: Icon(Icons.power),
               title: Text("Electricity Usage"),
               onTap: () {},
@@ -142,7 +143,7 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
               title: Text("Water Usage"),
               onTap: () {},
             ),
-            /*  ListTile(
+              ListTile(
               leading: Icon(Icons.money),
               title: Text("Balances"),
               onTap: () {},

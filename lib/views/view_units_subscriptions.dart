@@ -24,7 +24,7 @@ class _ViewUnitsSubscriptionsState extends State<ViewUnitsSubscriptions> {
         appBar: AppBar(
           title: Center(child: Text("Units Subscriptions")),
         ),
-        bottomNavigationBar: BottomNavigationBar(
+        /*bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           currentIndex: 0,
           iconSize: 25.0,
@@ -35,7 +35,7 @@ class _ViewUnitsSubscriptionsState extends State<ViewUnitsSubscriptions> {
             BottomNavigationBarItem(
                 icon: new Icon(Icons.person), label: 'Account')
           ],
-        ),
+        ), */
         body: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: FutureBuilder(

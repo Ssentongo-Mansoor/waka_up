@@ -21,7 +21,7 @@ class _ViewTenantsState extends State<ViewTenants> {
         appBar: AppBar(
           title: Center(child: Text("View Tenants")),
         ),
-        bottomNavigationBar: BottomNavigationBar(
+        /*bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           currentIndex: 0,
           iconSize: 25.0,
@@ -32,7 +32,7 @@ class _ViewTenantsState extends State<ViewTenants> {
             BottomNavigationBarItem(
                 icon: new Icon(Icons.person), label: 'Account')
           ],
-        ),
+        ),*/
         body: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: FutureBuilder(
