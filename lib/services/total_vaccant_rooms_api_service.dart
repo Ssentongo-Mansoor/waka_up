@@ -8,7 +8,10 @@ class TotalVaccantRoomsApiService {
   // create static api endpoint
   static const String SPECIFIC_TOTAL_UNITS_API_ENDPOINT =
       "http://192.168.43.254/waka/v1.0/requests/dashboard/units_vacant.php";
-
+  /* API Online
+  static const String SPECIFIC_TOTAL_UNITS_API_ENDPOINT =
+      "http://api.wakaug.com/v1.0/requests/dashboard/units_vacant.php";
+  */
   // create function to fetch specific tenants info
   static Future<TotalVaccantRooms> getTotalVaccantRooms(
       TotalVaccantRooms totalVaccantRoomsObject,

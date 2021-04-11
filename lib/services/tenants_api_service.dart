@@ -10,6 +10,12 @@ class TenantsApiService {
   static const String SPECIFIC_TENANTS_API_ENDPOINT =
       "http://192.168.43.254/waka/v1.0/requests/tenants/tenants.php";
 
+  /* API Online
+static const String SPECIFIC_TENANTS_API_ENDPOINT =
+      "http://api.wakaug.com/v1.0/requests/tenants/tenants.php";
+
+  */
+
   // create function to fetch specific tenants info
   static Future<List<Tenant>> getSpecificTenants(
       List<Tenant> specificTenantsList, TenantsProvider tenantsProvider) async {

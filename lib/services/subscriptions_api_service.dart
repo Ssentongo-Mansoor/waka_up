@@ -2,6 +2,7 @@ import 'package:waka/models/subscriptionsmodel.dart';
 import 'package:waka/providers/subscriptionsprovider.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SubscritpionsApiService {
   // create static api endpoint
@@ -10,11 +11,20 @@ class SubscritpionsApiService {
   static const String SPECIFIC_USER_SUBSCRIPTION_API_ENDPOINT =
       "http://192.168.43.254/waka/v1.0/requests/subscriptions/subs.php";
 
+  /* API Online
+  static const String ALL_SUBSCRIPTIONS_API_ENDPOINT =
+      "http://api.wakaug.com/v1.0/requests/subscriptions/subs.php";
+  static const String SPECIFIC_USER_SUBSCRIPTION_API_ENDPOINT =
+      "http://api.wakaug.com/v1.0/requests/subscriptions/subs.php";
+  */
+
   // create function to fetch all hostels info
   static Future<List<Subscriptions>> getAllSubscriptions(
       List<Subscriptions> loadedAllSubscriptionsList,
       SubscriptionsProvider subscriptionsProvider) async {
     print("GET REQUEST to get all Subscriptions info");
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var email = prefs.getString('email');
     // create a response variable
     var response;
     // wrap http post request in a try catch block
@@ -43,17 +53,17 @@ class SubscritpionsApiService {
       List<Subscriptions> specificUserSubscriptionsList,
       SubscriptionsProvider subscriptionsProvider) async {
     print("POST REQUEST to get specific user subscriptions info");
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var _landLoadEmail = prefs.getString('email');
     // initialize room search parameters
-    var _buildingManagerEmail;
+
     // assign values to the room search parameters
-    // _buildingManagerEmail = subscriptionsProvider.getBuildingManagerEmail;
-    _buildingManagerEmail = "buildingmanager@wakaug.com";
-    print('Email ID: ' + _buildingManagerEmail);
+    print('Email ID: ' + _landLoadEmail);
 
     // set the data
 
     var data = {
-      'email': _buildingManagerEmail,
+      'email': _landLoadEmail,
     };
     print("POST REQUEST to get subscritpions according to parameters");
     // create a response variable

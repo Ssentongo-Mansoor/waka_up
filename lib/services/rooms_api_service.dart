@@ -10,6 +10,11 @@ class RoomsApiService {
   static const String SPECIFIC_ROOMS_API_ENDPOINT =
       "http://192.168.43.254/waka/v1.0/requests/rooms/rooms.php";
 
+  /*online Api 
+  static const String SPECIFIC_ROOMS_API_ENDPOINT =
+      "http://api.wakaug.com/v1.0/requests/rooms/rooms.php";
+  */
+
   // create function to fetch specific tenants info
   static Future<List<Room>> getSpecificRooms(
       List<Room> specificRoomsList, RoomsProvider roomsProvider) async {
@@ -17,11 +22,8 @@ class RoomsApiService {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var _landLoadEmail = prefs.getString('email');
     // assign values to the room search parameters
-
     print('Landloard Email: ' + _landLoadEmail);
-
     // set the data
-
     var data = {
       'email': _landLoadEmail,
     };
@@ -49,7 +51,6 @@ class RoomsApiService {
         print("Error: " + e.toString());
       }
     }
-
     return specificRoomsList;
   }
 }

@@ -9,7 +9,10 @@ class TotalUnitsApiService {
   // create static api endpoint
   static const String SPECIFIC_TOTAL_UNITS_API_ENDPOINT =
       "http://192.168.43.254/waka/v1.0/requests/dashboard/units_total.php";
-
+  /* Online API
+  static const String SPECIFIC_TOTAL_UNITS_API_ENDPOINT =
+      "http://api.wakaug.com/v1.0/requests/dashboard/units_total.php";
+    */
   // create function to fetch specific tenants info
   static Future<TotalUnits> getTotalUnits(TotalUnits totalUnitsObject,
       TotalUnitsProvider totalUnitsProvider) async {

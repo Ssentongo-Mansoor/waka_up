@@ -43,7 +43,7 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: new Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(
-              icon: new Icon(Icons.settings), label: 'Settings'),
+              icon: new Icon(Icons.settings), label: 'Utilities'),
           BottomNavigationBarItem(
               icon: new IconButton(
                 icon: Icon(Icons.person),
