@@ -74,11 +74,20 @@ class HomePage extends StatelessWidget {
         title: Center(child: Text('Welcome to Waka')),
       ),*/
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Text(
-            "Waka",
-            style: TextStyle(color: myColor, fontSize: 125),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.20,
+          ),
+          Container(
+            padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height * 0.35,
+            decoration: BoxDecoration(
+                color: Colors.amberAccent[50],
+                image: DecorationImage(
+                    fit: BoxFit.fill,
+                    image: AssetImage('assets/images/waka_logo.png'))),
           ),
           Center(
             child: FlatButton(

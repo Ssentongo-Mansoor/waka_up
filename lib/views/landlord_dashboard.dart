@@ -95,8 +95,13 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
           children: <Widget>[
             Center(
               child: DrawerHeader(
-                child: new Icon(Icons.account_circle_rounded),
-                decoration: BoxDecoration(color: Colors.amberAccent[50]),
+                child: Container(),
+                decoration: BoxDecoration(
+                    color: Colors.amberAccent[50],
+                    image: DecorationImage(
+                        fit: BoxFit.fill,
+                        image:
+                            AssetImage('assets/images/waka_logo_header.png'))),
               ),
             ),
             ListTile(
