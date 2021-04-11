@@ -1,6 +1,7 @@
 //import 'dart:html';
 
 import 'package:flutter/material.dart';
+import 'package:async/async.dart';
 
 class ViewUnits extends StatefulWidget {
   @override
@@ -8,6 +9,7 @@ class ViewUnits extends StatefulWidget {
 }
 
 class _ViewUnitsState extends State<ViewUnits> {
+  final AsyncMemoizer _unitsListMemoizer = AsyncMemoizer();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

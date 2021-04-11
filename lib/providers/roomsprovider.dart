@@ -38,4 +38,12 @@ class RoomsProvider extends ChangeNotifier {
       print("RoomsProvider getSpecificRoomsList() error: " + e.toString());
     }
   }
+
+  Future<List<Room>> getRoomsListInfo() async {
+    try {
+      return await RoomsApiService.getSpecificRooms(_roomsList, this);
+    } catch (e) {
+      print("Error in Rooms List Future: " + e.toString());
+    }
+  }
 }

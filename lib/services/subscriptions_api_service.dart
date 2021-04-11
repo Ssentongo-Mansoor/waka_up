@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SubscritpionsApiService {
+class SubscriptionsApiService {
   // create static api endpoint
   /* API Offline
   static const String ALL_SUBSCRIPTIONS_API_ENDPOINT =

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:waka/providers/subscriptionsprovider.dart';
+import 'package:async/async.dart';
 
 class ViewUnitsSubscriptions extends StatefulWidget {
   @override
@@ -10,11 +11,18 @@ class ViewUnitsSubscriptions extends StatefulWidget {
 }
 
 class _ViewUnitsSubscriptionsState extends State<ViewUnitsSubscriptions> {
+  final AsyncMemoizer _memoizerUnitsSubscriptions = AsyncMemoizer();
   @override
   Widget build(BuildContext context) {
+    var subscriptionsProvider = Provider.of<SubscriptionsProvider>(context);
+    final _unitsSubscriptionFuture =
+        this._memoizerUnitsSubscriptions.runOnce(() async {
+      await Future.delayed(Duration(seconds: 2));
+      return subscriptionsProvider.getUnitsSubscriptionsInfo();
+    });
     return Scaffold(
         appBar: AppBar(
-          title: Center(child: Text("View Units")),
+          title: Center(child: Text("Units Subscriptions")),
         ),
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
@@ -29,54 +37,70 @@ class _ViewUnitsSubscriptionsState extends State<ViewUnitsSubscriptions> {
           ],
         ),
         body: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: DataTable(
-            columns: const <DataColumn>[
-              DataColumn(
-                label: Text(
-                  'Room ID',
-                  style: TextStyle(fontStyle: FontStyle.italic),
-                ),
-              ),
-              DataColumn(
-                  label: Text(
-                'Tenant ID',
-                style: TextStyle(fontStyle: FontStyle.italic),
-              )),
-              DataColumn(
-                  label: Text(
-                'Start Date',
-                style: TextStyle(fontStyle: FontStyle.italic),
-              )),
-              DataColumn(
-                  label: Text(
-                'End Date',
-                style: TextStyle(fontStyle: FontStyle.italic),
-              )),
-              DataColumn(
-                  label: Text(
-                'Price',
-                style: TextStyle(fontStyle: FontStyle.italic),
-              )),
-              DataColumn(
-                  label: Text(
-                'Paid',
-                style: TextStyle(fontStyle: FontStyle.italic),
-              )),
-              DataColumn(
-                  label: Text(
-                'Remaining',
-                style: TextStyle(fontStyle: FontStyle.italic),
-              )),
-              DataColumn(
-                  label: Text(
-                'Reference Code',
-                style: TextStyle(fontStyle: FontStyle.italic),
-              )),
-            ],
-            rows: _subscriptionsRows(),
-          ),
-        ));
+            scrollDirection: Axis.horizontal,
+            child: FutureBuilder(
+              future: _unitsSubscriptionFuture,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  try {
+                    return DataTable(
+                      columns: const <DataColumn>[
+                        DataColumn(
+                          label: Text(
+                            'Room ID',
+                            style: TextStyle(fontStyle: FontStyle.italic),
+                          ),
+                        ),
+                        DataColumn(
+                            label: Text(
+                          'Tenant ID',
+                          style: TextStyle(fontStyle: FontStyle.italic),
+                        )),
+                        DataColumn(
+                            label: Text(
+                          'Start Date',
+                          style: TextStyle(fontStyle: FontStyle.italic),
+                        )),
+                        DataColumn(
+                            label: Text(
+                          'End Date',
+                          style: TextStyle(fontStyle: FontStyle.italic),
+                        )),
+                        DataColumn(
+                            label: Text(
+                          'Price',
+                          style: TextStyle(fontStyle: FontStyle.italic),
+                        )),
+                        DataColumn(
+                            label: Text(
+                          'Paid',
+                          style: TextStyle(fontStyle: FontStyle.italic),
+                        )),
+                        DataColumn(
+                            label: Text(
+                          'Remaining',
+                          style: TextStyle(fontStyle: FontStyle.italic),
+                        )),
+                        DataColumn(
+                            label: Text(
+                          'Reference Code',
+                          style: TextStyle(fontStyle: FontStyle.italic),
+                        )),
+                      ],
+                      rows: _subscriptionsRows(),
+                    );
+                  } catch (e) {
+                    print("Error with snapshot: " + e.toString());
+                  }
+                }
+                if (snapshot.hasError) {
+                  return Text("Something went wrong");
+                }
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              },
+            )));
   }
 
   List<DataRow> _subscriptionsRows() {

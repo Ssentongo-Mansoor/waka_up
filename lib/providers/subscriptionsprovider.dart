@@ -94,7 +94,7 @@ class SubscriptionsProvider extends ChangeNotifier {
 
   Future<void> getSpecificUserSubscriptionsInformation() async {
     try {
-      await SubscritpionsApiService.getUserSpecificSubscriptions(
+      await SubscriptionsApiService.getUserSpecificSubscriptions(
               _subscriptionsList, this)
           .then((specificUserSubscriptionsList) {
         if (specificUserSubscriptionsList != null) {
@@ -103,6 +103,15 @@ class SubscriptionsProvider extends ChangeNotifier {
       });
     } catch (e) {
       print("Error: " + e.toString());
+    }
+  }
+
+  Future<List<Subscriptions>> getUnitsSubscriptionsInfo() async {
+    try {
+      return await SubscriptionsApiService.getUserSpecificSubscriptions(
+          _subscriptionsList, this);
+    } catch (e) {
+      print("Error in Unists Subscriptions Future: " + e.toString());
     }
   }
 }
