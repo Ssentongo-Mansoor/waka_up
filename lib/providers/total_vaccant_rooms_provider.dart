@@ -36,4 +36,13 @@ class TotalVaccantRoomsProvider extends ChangeNotifier {
       print("Error in Total VaccantRooms Provider: " + e.toString());
     }
   }
+
+  Future<TotalVaccantRooms> getTotalVaccantRoomsInfo() async {
+    try {
+      return await TotalVaccantRoomsApiService.getTotalVaccantRooms(
+          _totalVaccantRoomsObject, this);
+    } catch (e) {
+      print("Error in Total Vaccant Rooms Future : " + e.toString());
+    }
+  }
 }

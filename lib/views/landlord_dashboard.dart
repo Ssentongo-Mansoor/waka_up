@@ -26,6 +26,7 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
   final AsyncMemoizer _memoizerTotalUnits = AsyncMemoizer();
   final AsyncMemoizer _memoizerTotalTenants = AsyncMemoizer();
   final AsyncMemoizer _memoizerOccupiedRooms = AsyncMemoizer();
+  final AsyncMemoizer _memoizerVaccantRooms = AsyncMemoizer();
   @override
   Widget build(BuildContext context) {
     var _totalUnitsProvider = Provider.of<TotalUnitsProvider>(context);
@@ -50,6 +51,12 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
         this._memoizerOccupiedRooms.runOnce(() async {
       await Future.delayed(Duration(seconds: 2));
       return _totalRoomsOccupiedProvider.getTotalOccupiedRoomsInfo();
+    });
+
+    final _totalVaccantRoomsFuture =
+        this._memoizerVaccantRooms.runOnce(() async {
+      await Future.delayed(Duration(seconds: 2));
+      return _totalVaccantRoomsProvider.getTotalVaccantRoomsInfo();
     });
 
     return Scaffold(
@@ -388,6 +395,26 @@ class _LandLordDashboardState extends State<LandLordDashboard> {
                       "Vaccant Rooms",
                       style: TextStyle(color: Colors.black, fontSize: 20),
                     )),
+                    FutureBuilder(
+                      future: _totalVaccantRoomsFuture,
+                      builder: (BuildContext context, snapshot) {
+                        if (snapshot.hasData) {
+                          try {
+                            return Text(_totalVaccantRoomsProvider
+                                .getTotalVaccantRoomsObject.totalvaccantrooms
+                                .toString());
+                          } catch (e) {
+                            print("Error in the snapshot" + e.toString());
+                          }
+                        }
+                        if (snapshot.hasError) {
+                          return Text("Something went wrong");
+                        }
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      },
+                    )
                     /* Text(
                         _totalVaccantRoomsProvider
                             .getTotalVaccantRoomsObject.totalvaccantrooms
