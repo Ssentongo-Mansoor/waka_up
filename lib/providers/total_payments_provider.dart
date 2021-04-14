@@ -24,20 +24,6 @@ class TotalPaymentsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> getTotalPaymentsModelFromApi() async {
-    try {
-      await TotalPaymentsApiService.getTotalPayments(_totalPaymentsModel, this)
-          .then((_totalPaymentsObject) {
-        if (_totalPaymentsObject != null) {
-          setTotalPaymentsModel(_totalPaymentsObject);
-        }
-      });
-    } catch (e) {
-      print("Total Payments getTotalPaymentsModelFromApi() error: " +
-          e.toString());
-    }
-  }
-
   Future<TotalPayment> getTotalPaymentsInfo() async {
     try {
       return await TotalPaymentsApiService.getTotalPayments(

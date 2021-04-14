@@ -92,20 +92,6 @@ class SubscriptionsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> getSpecificUserSubscriptionsInformation() async {
-    try {
-      await SubscriptionsApiService.getUserSpecificSubscriptions(
-              _subscriptionsList, this)
-          .then((specificUserSubscriptionsList) {
-        if (specificUserSubscriptionsList != null) {
-          setSubscriptionsList(specificUserSubscriptionsList);
-        }
-      });
-    } catch (e) {
-      print("Error: " + e.toString());
-    }
-  }
-
   Future<List<Subscriptions>> getUnitsSubscriptionsInfo() async {
     try {
       return await SubscriptionsApiService.getUserSpecificSubscriptions(

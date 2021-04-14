@@ -8,10 +8,7 @@ class TotalVaccantRoomsProvider extends ChangeNotifier {
   // getters
   int get getTotalVaccantRooms => _totalvaccantrooms;
   TotalVaccantRooms get getTotalVaccantRoomsObject => _totalVaccantRoomsObject;
-  TotalVaccantRoomsProvider() {
-    print("TOTAL VACANTROOMS CONSTRUCTOR");
-    // getTotalVaccantRoomsObjectFromApi();
-  }
+
   // setters
   void setTotalVaccantRooms(int totalVaccantRooms) {
     _totalvaccantrooms = totalVaccantRooms;
@@ -21,20 +18,6 @@ class TotalVaccantRoomsProvider extends ChangeNotifier {
   void setTotalVaccantRoomsObject(TotalVaccantRooms totalVaccantRoomsObject) {
     _totalVaccantRoomsObject = totalVaccantRoomsObject;
     notifyListeners();
-  }
-
-  Future<void> getTotalVaccantRoomsObjectFromApi() async {
-    try {
-      await TotalVaccantRoomsApiService.getTotalVaccantRooms(
-              _totalVaccantRoomsObject, this)
-          .then((totalVaccantRoomsObject) {
-        if (totalVaccantRoomsObject != null) {
-          setTotalVaccantRoomsObject(totalVaccantRoomsObject);
-        }
-      });
-    } catch (e) {
-      print("Error in Total VaccantRooms Provider: " + e.toString());
-    }
   }
 
   Future<TotalVaccantRooms> getTotalVaccantRoomsInfo() async {

@@ -17,20 +17,6 @@ class PaymentsProvider extends ChangeNotifier {
   Payments _individualPayment;
   List<Payments> _paymentsList = [];
   // constructor
-  PaymentsProvider() {
-    // getSpecificUserPaymentsInformation();
-    /*  print("PAYMENTS PROVIDER CONSTRUCTOR");
-    try {
-      PaymentsApiService.getUserSpecificPayments(getPaymentsList, this)
-          .then((specificUserPaymentsList) {
-        if (specificUserPaymentsList != null) {
-          print(specificUserPaymentsList);
-        }
-      });
-    } catch (e) {
-      print("Error IN Payments Provider: " + e.toString());
-    } */
-  }
 
   // getters
   String get getPaymentId => _paymentId;

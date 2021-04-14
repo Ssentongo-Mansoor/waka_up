@@ -4,8 +4,9 @@ import 'package:form_validator/form_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:waka/views/landlord_dashboard.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-//import 'package:waka/user_model.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
+import 'dart:io';
 import 'package:waka/views/custom_color.dart';
 
 class Login extends StatefulWidget {
@@ -18,14 +19,66 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  bool visible = false;
+  bool dontShowPassword;
+  bool visible;
+  bool _connection;
+
+  @override
+  void initState() {
+    super.initState();
+    visible = false;
+    dontShowPassword = true;
+    _connection = false;
+    // initialize our objects in here
+  }
+
+  checkForInternetConnection() async {
+    try {
+      final result = await InternetAddress.lookup('google.com');
+
+      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+        // return true;
+        setState(() {
+          _connection = true;
+        });
+      }
+    } on SocketException catch (e) {
+      print("Connection problem: " + e.toString());
+      // return false;
+      setState(() {
+        _connection = false;
+      });
+    }
+  }
+
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  void _validateUserInput() {
+  _validateUserInput() async {
+    final noInternetSnackBar = SnackBar(
+      content: Text('You are offline!'),
+    );
     if (_loginFormKey.currentState.validate()) {
       print("User login input data is valid");
-      userLogin();
+      try {
+        await checkForInternetConnection();
+        await Future.delayed(Duration(milliseconds: 100));
+      } catch (e) {
+        throw "Error checking for Internet: " + e.toString();
+      }
+
+      _connection
+          ? userLogin()
+          : _scaffoldKey.currentState.showSnackBar(noInternetSnackBar);
     } else {
       print('Not validated');
+    }
+  }
+
+  _launchPrivacyPolicyURL() async {
+    const url = 'https://wakaug.com/techie/privacy-policy.php';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
     }
   }
 
@@ -152,7 +205,6 @@ class _LoginState extends State<Login> {
                         ),
                         Container(
                           padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
-                          // height: 50.0,
                           child: TextFormField(
                             controller: _emailController,
                             cursorColor: Colors.black,
@@ -183,10 +235,6 @@ class _LoginState extends State<Login> {
                         SizedBox(
                           width: 120,
                         ),
-                        Text(
-                          "Forgot Password?",
-                          style: TextStyle(color: myColor),
-                        )
                       ],
                     ),
                     SizedBox(
@@ -194,29 +242,46 @@ class _LoginState extends State<Login> {
                     ),
                     Container(
                       padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
-                      //  height: 50.0,
                       child: TextFormField(
-                          controller: _passwordController,
-                          cursorColor: Colors.black,
-                          style: TextStyle(fontSize: 14.0, height: 1.2),
-                          decoration: InputDecoration(
-                              hintText: "Enter your password",
-                              labelText: "Password",
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(5.0))),
-                          validator: (value) {
-                            if (value.trim().isEmpty) {
-                              return "* Required";
-                            } else
-                              return null;
-                          }),
+                        obscureText: this.dontShowPassword,
+                        controller: _passwordController,
+                        cursorColor: Colors.black,
+                        style: TextStyle(fontSize: 14.0, height: 1.2),
+                        decoration: InputDecoration(
+                            hintText: "Enter your password",
+                            labelText: "Password",
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5.0)),
+                            suffixIcon: IconButton(
+                              icon: Icon(Icons.security),
+                              color: this.dontShowPassword
+                                  ? Colors.black
+                                  : Colors.blue,
+                              onPressed: () {
+                                setState(() {
+                                  this.dontShowPassword =
+                                      !this.dontShowPassword;
+                                });
+                              },
+                            )),
+                        validator: (value) {
+                          if (value.trim().isEmpty) {
+                            return "* Required";
+                          } else
+                            return null;
+                        },
+                      ),
                     ),
                     Container(
                       padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
                       width: 300.0,
                       child: ElevatedButton(
-                        onPressed: () {
-                          _validateUserInput();
+                        onPressed: () async {
+                          try {
+                            await _validateUserInput();
+                          } catch (e) {
+                            throw "Error validating: " + e.toString();
+                          }
                         },
                         child: Padding(
                           padding: EdgeInsets.fromLTRB(0.0, 9.0, 0.0, 9.0),
@@ -228,9 +293,19 @@ class _LoginState extends State<Login> {
                         ),
                       ),
                     ),
-                    Text(
-                      'Our Terms and Conditions',
-                      style: TextStyle(color: Colors.black, fontSize: 15.0),
+                    GestureDetector(
+                      onTap: () {
+                        try {
+                          _launchPrivacyPolicyURL();
+                        } catch (e) {
+                          throw "Problem with Privacy Policy URL Launcher: " +
+                              e.toString();
+                        }
+                      },
+                      child: Text(
+                        'Our Privacy Policy',
+                        style: TextStyle(color: Colors.blue, fontSize: 15.0),
+                      ),
                     ),
                     Visibility(
                         visible: visible,
@@ -247,81 +322,3 @@ class _LoginState extends State<Login> {
     );
   }
 }
-
-/* Widget landscapeModeLayout(BuildContext context) {
-  return SingleChildScrollView(
-    child: Form(
-        //  key: _loginFormKey,
-        child: Center(
-      child: Container(
-        padding: EdgeInsets.fromLTRB(16.0, 20.0, 10.0, 20.0),
-        width: 320.0,
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              TextFormField(
-                // controller: _emailController,
-                cursorColor: Colors.black,
-                decoration: InputDecoration(
-                    hintText: "Email",
-                    labelText: "Email",
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5.0))),
-                validator: (value) {},
-              ),
-              SizedBox(
-                height: 10.0,
-              ),
-              TextFormField(
-                // controller: _passwordController,
-                cursorColor: Colors.black,
-                decoration: InputDecoration(
-                    hintText: "Password",
-                    labelText: "Password",
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5.0))),
-                validator: (value) {},
-              ),
-              Container(
-                padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 10.0),
-                width: 320.0,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => LandLordDashboard()),
-                    );
-                  },
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(0.0, 9.0, 0.0, 9.0),
-                    child: Text(
-                      'Login',
-                      style: TextStyle(color: Colors.white, fontSize: 15.0),
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Sign Up',
-                      style: TextStyle(color: Colors.black, fontSize: 15.0),
-                    ),
-                    Text(
-                      'Forgot Password?',
-                      style: TextStyle(color: Colors.black, fontSize: 15.0),
-                    ),
-                  ],
-                ),
-              )
-            ]),
-      ),
-    )),
-  );
-}
-*/

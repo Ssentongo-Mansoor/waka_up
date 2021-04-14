@@ -6,10 +6,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class TotalOccupiedRoomsApiService {
   // create static api endpoint
-  /*API Oflline
-  static const String SPECIFIC_TOTAL_VACCANT_ROOMS_API_ENDPOINT =
-      "http://192.168.43.254/waka/v1.0/requests/dashboard/units_occupied.php";
-  */
   // API Online
   static const String SPECIFIC_TOTAL_OCCUPIED_ROOMS_API_ENDPOINT =
       "http://api.wakaug.com/v1.0/requests/dashboard/units_occupied.php";

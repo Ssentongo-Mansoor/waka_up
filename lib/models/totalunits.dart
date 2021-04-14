@@ -1,7 +1,6 @@
 // To parse this JSON data, do
 //
 //     final totalUnits = totalUnitsFromJson(jsonString);
-
 import 'dart:convert';
 
 TotalUnits totalUnitsFromJson(String str) =>

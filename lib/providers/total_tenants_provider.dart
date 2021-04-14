@@ -8,10 +8,7 @@ class TotalTenantsProvider extends ChangeNotifier {
   // getters
   int get getTotalTenants => _totaltenants;
   TotalTenants get getTotalTenantsObject => _totalTenantsObject;
-  TotalTenantsProvider() {
-    print("TOTAL TENANTS CONSTRUCTOR");
-    // getTotalTenantsObjectFromApi();
-  }
+
   // setters
   void setTotalTenants(int totalTenants) {
     _totaltenants = totalTenants;
@@ -21,19 +18,6 @@ class TotalTenantsProvider extends ChangeNotifier {
   void setTotalTenantsObject(TotalTenants totalTenantsObject) {
     _totalTenantsObject = totalTenantsObject;
     notifyListeners();
-  }
-
-  Future<void> getTotalTenantsObjectFromApi() async {
-    try {
-      await TotalTenantsApiService.getTotalTenants(_totalTenantsObject, this)
-          .then((totalTenantsObject) {
-        if (totalTenantsObject != null) {
-          setTotalTenantsObject(totalTenantsObject);
-        }
-      });
-    } catch (e) {
-      print("Error in Total Tenants Provider: " + e.toString());
-    }
   }
 
   Future<TotalTenants> getTotalTenantsInfo() async {

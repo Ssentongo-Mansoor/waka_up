@@ -25,20 +25,6 @@ class TotalOccupiedRoomsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> getTotalOccupiedRoomsObjectFromApi() async {
-    try {
-      await TotalOccupiedRoomsApiService.getTotalOccupiedRooms(
-              _totalOccupiedRoomsObject, this)
-          .then((totalOccupiedRoomsObject) {
-        if (totalOccupiedRoomsObject != null) {
-          setTotalOccupiedRoomsObject(totalOccupiedRoomsObject);
-        }
-      });
-    } catch (e) {
-      print("Error in Total OccupiedRooms Provider: " + e.toString());
-    }
-  }
-
   Future<TotalOccupiedRooms> getTotalOccupiedRoomsInfo() async {
     try {
       return await TotalOccupiedRoomsApiService.getTotalOccupiedRooms(

@@ -6,12 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class SubscriptionsApiService {
   // create static api endpoint
-  /* API Offline
-  static const String ALL_SUBSCRIPTIONS_API_ENDPOINT =
-      "http://192.168.43.254/waka/v1.0/requests/subscriptions/subs.php";
-  static const String SPECIFIC_USER_SUBSCRIPTION_API_ENDPOINT =
-      "http://192.168.43.254/waka/v1.0/requests/subscriptions/subs.php";
-  */
+
   // API Online
   static const String ALL_SUBSCRIPTIONS_API_ENDPOINT =
       "http://api.wakaug.com/v1.0/requests/subscriptions/subs.php";

@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final totalTenants = totalTenantsFromJson(jsonString);
-
 import 'dart:convert';
 
 TotalTenants totalTenantsFromJson(String str) =>

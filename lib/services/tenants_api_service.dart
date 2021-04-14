@@ -1,4 +1,3 @@
-//import 'package:flutter/cupertino.dart';
 import 'package:waka/models/tenantsmodel.dart';
 import 'package:waka/providers/tenantsprovider.dart';
 import 'package:http/http.dart' as http;
@@ -7,10 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class TenantsApiService {
   // create static api endpoint
-  /* API Oflline
-  static const String SPECIFIC_TENANTS_API_ENDPOINT =
-      "http://192.168.43.254/waka/v1.0/requests/tenants/tenants.php";
-  */
+
   // API Online
   static const String SPECIFIC_TENANTS_API_ENDPOINT =
       "http://api.wakaug.com/v1.0/requests/tenants/tenants.php";

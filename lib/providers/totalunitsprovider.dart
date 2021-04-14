@@ -8,10 +8,7 @@ class TotalUnitsProvider extends ChangeNotifier {
   // getters
   int get getTotalUnits => _totalunits;
   TotalUnits get getTotalUnitsObject => _totalUnitsObject;
-  TotalUnitsProvider() {
-    print("TOTAL UNITS CONSTRUCTOR");
-    //  getTotalUnitsObjectFromApi();
-  }
+
   // setters
   void setTotalUnits(int totalUnits) {
     _totalunits = totalUnits;
@@ -21,19 +18,6 @@ class TotalUnitsProvider extends ChangeNotifier {
   void setTotalUnitsObject(TotalUnits totalUnitsObject) {
     _totalUnitsObject = totalUnitsObject;
     notifyListeners();
-  }
-
-  Future<void> getTotalUnitsObjectFromApi() async {
-    try {
-      await TotalUnitsApiService.getTotalUnits(_totalUnitsObject, this)
-          .then((totalUnitsObject) {
-        if (totalUnitsObject != null) {
-          setTotalUnitsObject(totalUnitsObject);
-        }
-      });
-    } catch (e) {
-      print("Error in Total Units Provider: " + e.toString());
-    }
   }
 
   Future<TotalUnits> getTotalUnitsInfo() async {

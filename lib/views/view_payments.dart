@@ -1,5 +1,3 @@
-//import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:waka/providers/paymentsprovider.dart';
 import 'package:provider/provider.dart';

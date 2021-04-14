@@ -6,10 +6,6 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RoomsApiService {
-  // create static api endpoint
-  /*static const String SPECIFIC_ROOMS_API_ENDPOINT =
-      "http://192.168.43.254/waka/v1.0/requests/rooms/rooms.php";
-*/
   //online Api
   static const String SPECIFIC_ROOMS_API_ENDPOINT =
       "http://api.wakaug.com/v1.0/requests/rooms/rooms.php";

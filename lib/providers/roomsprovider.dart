@@ -26,19 +26,6 @@ class RoomsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> getSpecificRoomsList() async {
-    try {
-      await RoomsApiService.getSpecificRooms(_roomsList, this)
-          .then((specificRoomsList) {
-        if (specificRoomsList != null) {
-          setRoomsList(specificRoomsList);
-        }
-      });
-    } catch (e) {
-      print("RoomsProvider getSpecificRoomsList() error: " + e.toString());
-    }
-  }
-
   Future<List<Room>> getRoomsListInfo() async {
     try {
       return await RoomsApiService.getSpecificRooms(_roomsList, this);

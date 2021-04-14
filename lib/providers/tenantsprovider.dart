@@ -39,19 +39,6 @@ class TenantsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> getSpecificTenantsList() async {
-    try {
-      await TenantsApiService.getSpecificTenants(_tenantsList, this)
-          .then((specificTenantsList) {
-        if (specificTenantsList != null) {
-          setTenantsList(specificTenantsList);
-        }
-      });
-    } catch (e) {
-      print("Tenants getSpecificTenantsList() error: " + e.toString());
-    }
-  }
-
   Future<List<Tenant>> getTenantsListInfo() async {
     try {
       return await TenantsApiService.getSpecificTenants(_tenantsList, this);
