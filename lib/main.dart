@@ -13,7 +13,7 @@ import 'package:waka/providers/total_tenants_provider.dart';
 import 'package:waka/providers/occupied_rooms_provider.dart';
 import 'package:waka/providers/total_vaccant_rooms_provider.dart';
 import 'package:waka/providers/total_payments_provider.dart';
-import 'dart:io';
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -67,19 +67,8 @@ class WakaHome extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
-  checkForInternetConnection() async {
-    try {
-      await Future.delayed(Duration(milliseconds: 500));
-      final result = await InternetAddress.lookup('google.com');
-      await Future.delayed(Duration(milliseconds: 500));
-      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-        return true;
-      }
-    } on SocketException catch (e) {
-      print("Connection problem: " + e.toString());
-      return false;
-    }
-  }
+
+ 
 
   @override
   Widget build(BuildContext context) {
